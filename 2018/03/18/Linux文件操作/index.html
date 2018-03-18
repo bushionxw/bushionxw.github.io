@@ -5,15 +5,20 @@
   
 
   
-  <title>Archiv: 2018/3 | bushionxw Blog</title>
+  <title>Linux文件操作 | bushionxw Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="bushionxw Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2018/03/index.html">
+  <meta name="description" content="1.修改权限chmod 1.1 参数r:4 w:2 x:1 u:    用户 g:    组 o:    其它 a:    所有 1.2 例子所有的人有rwx权限 chmod 777 test.txt 读权限 chmod u+r test.txt chmod u-r test.txt chmod +x test.txt 2. 改变所属关系2.1 chown改变属主 chown dan newfil">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux文件操作">
+<meta property="og:url" content="http://yoursite.com/2018/03/18/Linux文件操作/index.html">
 <meta property="og:site_name" content="bushionxw Blog">
+<meta property="og:description" content="1.修改权限chmod 1.1 参数r:4 w:2 x:1 u:    用户 g:    组 o:    其它 a:    所有 1.2 例子所有的人有rwx权限 chmod 777 test.txt 读权限 chmod u+r test.txt chmod u-r test.txt chmod +x test.txt 2. 改变所属关系2.1 chown改变属主 chown dan newfil">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-18T05:10:12.415Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="bushionxw Blog">
+<meta name="twitter:title" content="Linux文件操作">
+<meta name="twitter:description" content="1.修改权限chmod 1.1 参数r:4 w:2 x:1 u:    用户 g:    组 o:    其它 a:    所有 1.2 例子所有的人有rwx权限 chmod 777 test.txt 读权限 chmod u+r test.txt chmod u-r test.txt chmod +x test.txt 2. 改变所属关系2.1 chown改变属主 chown dan newfil">
   
     <link rel="alternate" href="/atom.xml" title="bushionxw Blog" type="application/atom+xml">
   
@@ -68,154 +73,91 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/03/18/Linux环境变量/" class="archive-article-date">
-  <time datetime="2018-03-18T05:13:07.000Z" itemprop="datePublished">3月 18</time>
+        <section id="main"><article id="post-Linux文件操作" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/18/Linux文件操作/" class="article-date">
+  <time datetime="2018-03-18T04:56:32.000Z" itemprop="datePublished">2018-03-18</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编码/">编码</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/18/Linux环境变量/">Linux环境变量</a>
+    <h1 class="article-title" itemprop="name">
+      Linux文件操作
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/03/18/Linux进程管理/" class="archive-article-date">
-  <time datetime="2018-03-18T05:10:45.000Z" itemprop="datePublished">3月 18</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/18/Linux进程管理/">Linux进程管理</a>
-    </h1>
-  
+        <h1 id="1-修改权限"><a href="#1-修改权限" class="headerlink" title="1.修改权限"></a>1.修改权限</h1><p>chmod</p>
+<h2 id="1-1-参数"><a href="#1-1-参数" class="headerlink" title="1.1 参数"></a>1.1 参数</h2><p>r:4</p>
+<p>w:2</p>
+<p>x:1</p>
+<p>u:    用户</p>
+<p>g:    组</p>
+<p>o:    其它</p>
+<p>a:    所有</p>
+<h2 id="1-2-例子"><a href="#1-2-例子" class="headerlink" title="1.2 例子"></a>1.2 例子</h2><p>所有的人有rwx权限</p>
+<p>chmod 777 test.txt</p>
+<p>读权限</p>
+<p>chmod u+r test.txt</p>
+<p>chmod u-r test.txt</p>
+<p>chmod +x test.txt</p>
+<h1 id="2-改变所属关系"><a href="#2-改变所属关系" class="headerlink" title="2. 改变所属关系"></a>2. 改变所属关系</h1><h2 id="2-1-chown"><a href="#2-1-chown" class="headerlink" title="2.1 chown"></a>2.1 chown</h2><p>改变属主</p>
+<p>chown dan newfile</p>
+<p>同时改变属主和属组</p>
+<p>chown dan.shared newfile</p>
+<p>只改属组</p>
+<p>chown .rich newfile</p>
+<h2 id="2-2-chgrp"><a href="#2-2-chgrp" class="headerlink" title="2.2 chgrp"></a>2.2 chgrp</h2><p>chgrp shared newfile</p>
+<h1 id="3-共享文件"><a href="#3-共享文件" class="headerlink" title="3. 共享文件"></a>3. 共享文件</h1><p>mkdir testdir</p>
+<p>chgrp shared testdir</p>
+<p>chmod g+s testdir</p>
+<p>umask 002</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/03/18/Linux文件操作/" class="archive-article-date">
-  <time datetime="2018-03-18T04:56:32.000Z" itemprop="datePublished">3月 18</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/18/Linux文件操作/">Linux文件操作</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/03/10/Linux管理账户/" class="archive-article-date">
-  <time datetime="2018-03-10T12:40:30.000Z" itemprop="datePublished">3月 10</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/18/Linux文件操作/" data-id="cjewd4edn00000gut6pfybjre" class="article-share-link">Teilen</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/10/Linux管理账户/">Linux管理账户</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/03/10/gawk操作用法/" class="archive-article-date">
-  <time datetime="2018-03-10T12:38:58.000Z" itemprop="datePublished">3月 10</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/10/gawk操作用法/">gawk操作用法</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/03/10/sed操作用法/" class="archive-article-date">
-  <time datetime="2018-03-10T12:38:41.000Z" itemprop="datePublished">3月 10</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/10/sed操作用法/">sed操作用法</a>
-    </h1>
+    <a href="/2018/03/18/Linux进程管理/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          Linux进程管理
+        
+      </div>
+    </a>
   
+  
+    <a href="/2018/03/10/Linux管理账户/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">Linux管理账户</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/03/10/Linux基本指令/" class="archive-article-date">
-  <time datetime="2018-03-10T08:51:16.000Z" itemprop="datePublished">3月 10</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/10/Linux基本指令/">Linux基本指令</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
 
 </section>
         
