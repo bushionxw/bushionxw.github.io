@@ -7,18 +7,18 @@
   
   <title>Linux管理账户 | bushionxw Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.添加用户 1.1 功能 添加新用户 useradd 1.2 参数含义 -c    添加备注 -d     为主目录制定名字 -e    用YYYYY-MM-DD 指定账户过期日期 -f     指定密码过期后多少天禁用账户，0：一过期就禁用，-1：禁用这个功能 -g    指定用户登陆组的GID或者组名,修改替换默认用户组 -G    指定用户除登陆组之外的所有组，增加新的用户组 -k">
+  <meta name="description" content="1.添加用户1.1 功能添加新用户 useradd 1.2 参数含义-c    添加备注 -d     为主目录制定名字 -e    用YYYYY-MM-DD 指定账户过期日期 -f     指定密码过期后多少天禁用账户，0：一过期就禁用，-1：禁用这个功能 -g    指定用户登陆组的GID或者组名,修改替换默认用户组 -G    指定用户除登陆组之外的所有组，增加新的用户组 -k    和-m">
 <meta name="keywords" content="Linux相关">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux管理账户">
 <meta property="og:url" content="http://yoursite.com/2018/03/10/Linux管理账户/index.html">
 <meta property="og:site_name" content="bushionxw Blog">
-<meta property="og:description" content="1.添加用户 1.1 功能 添加新用户 useradd 1.2 参数含义 -c    添加备注 -d     为主目录制定名字 -e    用YYYYY-MM-DD 指定账户过期日期 -f     指定密码过期后多少天禁用账户，0：一过期就禁用，-1：禁用这个功能 -g    指定用户登陆组的GID或者组名,修改替换默认用户组 -G    指定用户除登陆组之外的所有组，增加新的用户组 -k">
+<meta property="og:description" content="1.添加用户1.1 功能添加新用户 useradd 1.2 参数含义-c    添加备注 -d     为主目录制定名字 -e    用YYYYY-MM-DD 指定账户过期日期 -f     指定密码过期后多少天禁用账户，0：一过期就禁用，-1：禁用这个功能 -g    指定用户登陆组的GID或者组名,修改替换默认用户组 -G    指定用户除登陆组之外的所有组，增加新的用户组 -k    和-m">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-18T03:05:15.806Z">
+<meta property="og:updated_time" content="2018-03-18T13:26:52.342Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux管理账户">
-<meta name="twitter:description" content="1.添加用户 1.1 功能 添加新用户 useradd 1.2 参数含义 -c    添加备注 -d     为主目录制定名字 -e    用YYYYY-MM-DD 指定账户过期日期 -f     指定密码过期后多少天禁用账户，0：一过期就禁用，-1：禁用这个功能 -g    指定用户登陆组的GID或者组名,修改替换默认用户组 -G    指定用户除登陆组之外的所有组，增加新的用户组 -k">
+<meta name="twitter:description" content="1.添加用户1.1 功能添加新用户 useradd 1.2 参数含义-c    添加备注 -d     为主目录制定名字 -e    用YYYYY-MM-DD 指定账户过期日期 -f     指定密码过期后多少天禁用账户，0：一过期就禁用，-1：禁用这个功能 -g    指定用户登陆组的GID或者组名,修改替换默认用户组 -G    指定用户除登陆组之外的所有组，增加新的用户组 -k    和-m">
   
     <link rel="alternate" href="/atom.xml" title="bushionxw Blog" type="application/atom+xml">
   
@@ -64,7 +64,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -99,12 +99,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1.添加用户</p>
-<p>1.1 功能</p>
-<p>添加新用户</p>
+        <h1 id="1-添加用户"><a href="#1-添加用户" class="headerlink" title="1.添加用户"></a>1.添加用户</h1><h2 id="1-1-功能"><a href="#1-1-功能" class="headerlink" title="1.1 功能"></a>1.1 功能</h2><p>添加新用户</p>
 <p>useradd</p>
-<p>1.2 参数含义</p>
-<p>-c    添加备注</p>
+<h2 id="1-2-参数含义"><a href="#1-2-参数含义" class="headerlink" title="1.2 参数含义"></a>1.2 参数含义</h2><p>-c    添加备注</p>
 <p>-d     为主目录制定名字</p>
 <p>-e    用YYYYY-MM-DD 指定账户过期日期</p>
 <p>-f     指定密码过期后多少天禁用账户，0：一过期就禁用，-1：禁用这个功能</p>
@@ -118,30 +115,23 @@
 <p>-p    为用户账户指定默认密码</p>
 <p>-s    指定默认登陆shell</p>
 <p>-u    指定账户的UID</p>
-<p>1.3 例子</p>
-<p>查看用户默认值</p>
+<h2 id="1-3-例子"><a href="#1-3-例子" class="headerlink" title="1.3 例子"></a>1.3 例子</h2><p>查看用户默认值</p>
 <p>useradd  -D</p>
 <p>添加新用户:创建Home目录</p>
 <p>useradd -m test</p>
-<p>2.删除用户</p>
-<p>userdel</p>
+<h1 id="2-删除用户"><a href="#2-删除用户" class="headerlink" title="2.删除用户"></a>2.删除用户</h1><p>userdel</p>
 <p>只删除用户信息（/etc/passwd）：</p>
 <p>userdel test</p>
 <p>删除用户所有文件:home目录及邮件目录</p>
 <p>userdel -r test</p>
-<p>3.修改用户</p>
-<p>3.1 usermod</p>
-<p>3.1.2 参数</p>
-<p>-l    修改账户的登录名</p>
+<h2 id="3-修改用户"><a href="#3-修改用户" class="headerlink" title="3.修改用户"></a>3.修改用户</h2><h2 id="3-1-usermod"><a href="#3-1-usermod" class="headerlink" title="3.1 usermod"></a>3.1 usermod</h2><h3 id="3-1-2-参数"><a href="#3-1-2-参数" class="headerlink" title="3.1.2 参数"></a>3.1.2 参数</h3><p>-l    修改账户的登录名</p>
 <p>-L    锁定账户，</p>
 <p>-p    修改账户密码</p>
 <p>-U    解除锁定</p>
 <p>3.1.3 例子</p>
 <p>3.2 passwd</p>
-<p>3.2.1 功能</p>
-<p>修改用户密码</p>
-<p>3.2.2 例子</p>
-<p>修改单个用户密码</p>
+<h3 id="3-2-1-功能"><a href="#3-2-1-功能" class="headerlink" title="3.2.1 功能"></a>3.2.1 功能</h3><p>修改用户密码</p>
+<h3 id="3-2-2-例子"><a href="#3-2-2-例子" class="headerlink" title="3.2.2 例子"></a>3.2.2 例子</h3><p>修改单个用户密码</p>
 <p>passwd test</p>
 <p>批量修改密码</p>
 <p>chpasswd &lt; users.txt</p>
@@ -154,21 +144,21 @@
 <p>-I    设置密码过期到锁定账户的天数</p>
 <p>-m    设置修改密码之间最少要多少天</p>
 <p>-W    设置密码过期前多久开始提醒</p>
-<p>4.用户组</p>
-<p>4.1 创建新组</p>
-<p>groupadd</p>
+<h1 id="4-用户组"><a href="#4-用户组" class="headerlink" title="4.用户组"></a>4.用户组</h1><h2 id="4-1-创建新组"><a href="#4-1-创建新组" class="headerlink" title="4.1 创建新组"></a>4.1 创建新组</h2><p>groupadd</p>
 <p>例子：</p>
 <p>groupadd shared</p>
 <p>用户增加用户组(-G:增加，-g:替换修改)</p>
 <p>usermod -G shared test</p>
-<p>4.2 修改组</p>
-<p>groupmod</p>
+<h2 id="4-2-修改组"><a href="#4-2-修改组" class="headerlink" title="4.2 修改组"></a>4.2 修改组</h2><p>groupmod</p>
 <p>groupmod -n sharing shared</p>
+<h1 id="5-sudo权限"><a href="#5-sudo权限" class="headerlink" title="5.sudo权限"></a>5.sudo权限</h1><p>1.添加文件的写权限。也就是输入命令”chmod u+w /etc/sudoers”。  </p>
+<p>2.编辑/etc/sudoers文件。也就是输入命令”vim /etc/sudoers”,进入编辑模式，找到这一 行：”root ALL=(ALL) ALL”（会用vim编辑器的可以使用“/root ALL=(ALL)ALL”定位）在起下面添加”xxx ALL=(ALL) ALL”(这里的xxx是你的用户名)，然后保存退出。 </p>
+<p>3.撤销文件的写权限。也就是输入命令”chmod u-w /etc/sudoers”。 </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/10/Linux管理账户/" data-id="cjewd4ee300050gut7wfpusgv" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2018/03/10/Linux管理账户/" data-id="cjewu57xs00068sutv0kss3lt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux相关/">Linux相关</a></li></ul>
@@ -180,7 +170,7 @@
 <nav id="article-nav">
   
     <a href="/2018/03/18/Linux文件操作/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Neuer</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           Linux文件操作
@@ -190,7 +180,7 @@
   
   
     <a href="/2018/03/10/gawk操作用法/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Älter</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">gawk操作用法</div>
     </a>
   
@@ -205,7 +195,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Kategorien</h3>
+    <h3 class="widget-title">Categories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/编码/">编码</a></li></ul>
     </div>
@@ -234,7 +224,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archiv</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li></ul>
     </div>
@@ -244,9 +234,21 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">letzter Beitrag</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/03/18/MakeFile编码/">MakeFile编码</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/18/Linux重定向/">Linux重定向</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/18/Linux管道/">Linux管道</a>
+          </li>
         
           <li>
             <a href="/2018/03/18/Linux环境变量/">Linux环境变量</a>
@@ -254,18 +256,6 @@
         
           <li>
             <a href="/2018/03/18/Linux进程管理/">Linux进程管理</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/18/Linux文件操作/">Linux文件操作</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/10/Linux管理账户/">Linux管理账户</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/10/gawk操作用法/">gawk操作用法</a>
           </li>
         
       </ul>

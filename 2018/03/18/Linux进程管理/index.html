@@ -7,15 +7,18 @@
   
   <title>Linux进程管理 | bushionxw Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="Linux">
+  <meta name="description" content="1.查看进程ps 1.1参数1）ps a 显示现行终端机下的所有程序，包括其他用户的程序。 2）ps -A 显示所有程序。 3）ps c 列出程序时，显示每个程序真正的指令名称，而不包含路径，参数或常驻服务的标示。 4）ps -e 此参数的效果和指定”A”参数相同。 5）ps e 列出程序时，显示每个程序所使用的环境变量。 6）ps f 用ASCII字符显示树状结构，表达程序间的相互关系。 7）p">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux进程管理">
 <meta property="og:url" content="http://yoursite.com/2018/03/18/Linux进程管理/index.html">
 <meta property="og:site_name" content="bushionxw Blog">
+<meta property="og:description" content="1.查看进程ps 1.1参数1）ps a 显示现行终端机下的所有程序，包括其他用户的程序。 2）ps -A 显示所有程序。 3）ps c 列出程序时，显示每个程序真正的指令名称，而不包含路径，参数或常驻服务的标示。 4）ps -e 此参数的效果和指定”A”参数相同。 5）ps e 列出程序时，显示每个程序所使用的环境变量。 6）ps f 用ASCII字符显示树状结构，表达程序间的相互关系。 7）p">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-18T05:11:07.114Z">
+<meta property="og:updated_time" content="2018-03-18T13:03:59.133Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux进程管理">
+<meta name="twitter:description" content="1.查看进程ps 1.1参数1）ps a 显示现行终端机下的所有程序，包括其他用户的程序。 2）ps -A 显示所有程序。 3）ps c 列出程序时，显示每个程序真正的指令名称，而不包含路径，参数或常驻服务的标示。 4）ps -e 此参数的效果和指定”A”参数相同。 5）ps e 列出程序时，显示每个程序所使用的环境变量。 6）ps f 用ASCII字符显示树状结构，表达程序间的相互关系。 7）p">
   
     <link rel="alternate" href="/atom.xml" title="bushionxw Blog" type="application/atom+xml">
   
@@ -61,7 +64,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -96,11 +99,50 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="1-查看进程"><a href="#1-查看进程" class="headerlink" title="1.查看进程"></a>1.查看进程</h1><p>ps</p>
+<h2 id="1-1参数"><a href="#1-1参数" class="headerlink" title="1.1参数"></a>1.1参数</h2><p>1）ps a 显示现行终端机下的所有程序，包括其他用户的程序。</p>
+<p>2）ps -A 显示所有程序。</p>
+<p>3）ps c 列出程序时，显示每个程序真正的指令名称，而不包含路径，参数或常驻服务的标示。</p>
+<p>4）ps -e 此参数的效果和指定”A”参数相同。</p>
+<p>5）ps e 列出程序时，显示每个程序所使用的环境变量。</p>
+<p>6）ps f 用ASCII字符显示树状结构，表达程序间的相互关系。</p>
+<p>7）ps -H 显示树状结构，表示程序间的相互关系。</p>
+<p>8）ps -N 显示所有的程序，除了执行ps指令终端机下的程序之外。</p>
+<p>9）ps s 采用程序信号的格式显示程序状况。</p>
+<p>10）ps S 列出程序时，包括已中断的子程序资料。</p>
+<p>11）ps -t&lt;终端机编号&gt; 　指定终端机编号，并列出属于该终端机的程序的状况。</p>
+<p>12）ps u 　以用户为主的格式来显示程序状况。</p>
+<p>13）ps x 　显示所有程序，不以终端机来区分。</p>
+<p>最常用的方法是ps -aux,然后再利用一个管道符号导向到grep去查找特定的进程,然后再对特定的进程进行操作。</p>
+<h2 id="1-2例子"><a href="#1-2例子" class="headerlink" title="1.2例子"></a>1.2例子</h2><p>linux上进程有5种状态:</p>
+<ol>
+<li>运行(正在运行或在运行队列中等待)</li>
+<li>中断(休眠中, 受阻, 在等待某个条件的形成或接受到信号)</li>
+<li>不可中断(收到信号不唤醒和不可运行, 进程必须等待直到有中断发生)</li>
+<li>僵死(进程已终止, 但进程描述符存在, 直到父进程调用wait4()系统调用后释放)</li>
+<li>停止(进程收到SIGSTOP, SIGSTP, SIGTIN, SIGTOU信号后停止运行运行)</li>
+</ol>
+<p>ps工具标识进程的5种状态码:<br>D 不可中断 uninterruptible sleep (usually IO)<br>R 运行 runnable (on run queue)<br>S 中断 sleeping<br>T 停止 traced or stopped<br>Z 僵死 a defunct (”zombie”) process</p>
+<p>注: 其它状态还包括W(无驻留页), &lt;(高优先级进程), N(低优先级进程), L(内存锁页).</p>
+<p>使用ps格式输出来查看进程状态:<br>ps -eo user,stat..,cmd</p>
+<p>user 用户名<br>uid 用户号<br>pid 进程号<br>ppid 父进程号<br>size 内存大小, Kbytes字节.<br>vsize 总虚拟内存大小, bytes字节(包含code+data+stack)<br>share 总共享页数<br>nice 进程优先级(缺省为0, 最大为-20)<br>priority(pri) 内核调度优先级<br>pmem 进程分享的物理内存数的百分比<br>trs 程序执行代码驻留大小<br>rss 进程使用的总物理内存数, Kbytes字节<br>time 进程执行起到现在总的CPU暂用时间<br>stat 进程状态<br>cmd(args) 执行命令的简单格式</p>
+<p>查看当前系统进程的uid,pid,stat,pri, 以uid号排序.<br>ps -eo pid,stat,pri,uid –sort uid</p>
+<p>查看当前系统进程的user,pid,stat,rss,args, 以rss排序.<br>ps -eo user,pid,stat,rss,args –sort rss</p>
+<h1 id="2-关闭进程"><a href="#2-关闭进程" class="headerlink" title="2.关闭进程"></a>2.关闭进程</h1><p>kill</p>
+<p>有十几种控制进程的方法，下面是一些常用的方法:</p>
+<p>kill -STOP [pid]<br>发送SIGSTOP (17,19,23)停止一个进程，而并不消灭这个进程。</p>
+<p>kill -CONT [pid]<br>发送SIGCONT (19,18,25)重新开始一个停止的进程。</p>
+<p>kill -KILL [pid]<br>发送SIGKILL (9)强迫进程立即停止，并且不实施清理操作。</p>
+<p>kill -9 -1<br>终止你拥有的全部进程。</p>
+<p>终止进程多个进程<br>killall http*</p>
+<h1 id="3-监控进程"><a href="#3-监控进程" class="headerlink" title="3.监控进程"></a>3.监控进程</h1><p>top</p>
+<p>可以下载htop，是top的增强版，显示信息和展示方式更丰富；</p>
+<p>可参考：<a href="https://www.cnblogs.com/yqsun/p/5396363.html" target="_blank" rel="noopener">https://www.cnblogs.com/yqsun/p/5396363.html</a></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/18/Linux进程管理/" data-id="cjewd4ee3000b0gutnj1g9399" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2018/03/18/Linux进程管理/" data-id="cjewu57y0000a8sut0hk26s5t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -112,7 +154,7 @@
 <nav id="article-nav">
   
     <a href="/2018/03/18/Linux环境变量/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Neuer</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           Linux环境变量
@@ -122,7 +164,7 @@
   
   
     <a href="/2018/03/18/Linux文件操作/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Älter</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">Linux文件操作</div>
     </a>
   
@@ -137,7 +179,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Kategorien</h3>
+    <h3 class="widget-title">Categories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/编码/">编码</a></li></ul>
     </div>
@@ -166,7 +208,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archiv</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li></ul>
     </div>
@@ -176,9 +218,21 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">letzter Beitrag</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/03/18/MakeFile编码/">MakeFile编码</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/18/Linux重定向/">Linux重定向</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/18/Linux管道/">Linux管道</a>
+          </li>
         
           <li>
             <a href="/2018/03/18/Linux环境变量/">Linux环境变量</a>
@@ -186,18 +240,6 @@
         
           <li>
             <a href="/2018/03/18/Linux进程管理/">Linux进程管理</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/18/Linux文件操作/">Linux文件操作</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/10/Linux管理账户/">Linux管理账户</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/10/gawk操作用法/">gawk操作用法</a>
           </li>
         
       </ul>
