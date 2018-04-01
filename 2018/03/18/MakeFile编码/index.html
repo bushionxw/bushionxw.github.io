@@ -7,15 +7,18 @@
   
   <title>MakeFile编码 | bushionxw Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="Linux">
+  <meta name="description" content="例子： #main: test.cpp #gcc -o main test.cpp cc = gccprom = maindeps = func.hsource = test.cppobj = test.o func.o #deps = $(shell find ./ -name “*.h”) #src = $(shell find ./ -name “*.c”) $(prom): $(obj)">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MakeFile编码">
 <meta property="og:url" content="bushionxw.github.io/2018/03/18/MakeFile编码/index.html">
 <meta property="og:site_name" content="bushionxw Blog">
+<meta property="og:description" content="例子： #main: test.cpp #gcc -o main test.cpp cc = gccprom = maindeps = func.hsource = test.cppobj = test.o func.o #deps = $(shell find ./ -name “*.h”) #src = $(shell find ./ -name “*.c”) $(prom): $(obj)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-18T13:32:21.901Z">
+<meta property="og:updated_time" content="2018-03-31T15:00:53.358Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MakeFile编码">
+<meta name="twitter:description" content="例子： #main: test.cpp #gcc -o main test.cpp cc = gccprom = maindeps = func.hsource = test.cppobj = test.o func.o #deps = $(shell find ./ -name “*.h”) #src = $(shell find ./ -name “*.c”) $(prom): $(obj)">
   
     <link rel="alternate" href="/atom.xml" title="bushionxw Blog" type="application/atom+xml">
   
@@ -98,11 +101,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>例子：</p>
+<p>#main: test.cpp</p>
+<p>#gcc -o main test.cpp</p>
+<p>cc = gcc<br>prom = main<br>deps = func.h<br>source = test.cpp<br>obj = test.o func.o</p>
+<p>#deps = $(shell find ./ -name “*.h”)</p>
+<p>#src = $(shell find ./ -name “*.c”)</p>
+<p>$(prom): $(obj)<br>    $(cc) -o $(prom) $(obj)</p>
+<p>%.o: %.c $(deps)<br>    $(cc) -c $&lt; -o $@</p>
+<p>clean:<br>    rm -rf $(obj) $(prom)</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/03/18/MakeFile编码/" data-id="cjey9ymuj000k5wutzl3shbfv" class="article-share-link">Teilen</a>
+      <a data-url="bushionxw.github.io/2018/03/18/MakeFile编码/" data-id="cjfgs3ezu000km8utg9e80e1j" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -183,6 +195,14 @@
       <ul>
         
           <li>
+            <a href="/2018/03/28/Linux网络相关/">Linux网络相关</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/28/CMake相关/">CMake相关</a>
+          </li>
+        
+          <li>
             <a href="/2018/03/19/404/">(no title)</a>
           </li>
         
@@ -192,14 +212,6 @@
         
           <li>
             <a href="/2018/03/18/Linux重定向/">Linux重定向</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/18/Linux管道/">Linux管道</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/18/Linux环境变量/">Linux环境变量</a>
           </li>
         
       </ul>

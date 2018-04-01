@@ -72,6 +72,155 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Linux网络相关" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/28/Linux网络相关/" class="article-date">
+  <time datetime="2018-03-28T12:32:38.000Z" itemprop="datePublished">2018-03-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编码/">编码</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/28/Linux网络相关/">Linux网络相关</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-外界访问相关配置"><a href="#1-外界访问相关配置" class="headerlink" title="1.外界访问相关配置"></a>1.外界访问相关配置</h1><p>在 /etc/sysconfig/network-scripts/文件夹下，有文件如：ifcfg-eth0 或者 ifcfg-ens33等，不同的系统版本文件名称不一样，文件中的ONBOOT=YES，意思是激活网卡；</p>
+<h1 id="2-相关文件"><a href="#2-相关文件" class="headerlink" title="2.相关文件"></a>2.相关文件</h1><p>(1)<strong>/etc/sysconfig/network</strong></p>
+<p>功能在于设置主机名称和是否可以启动整个网络</p>
+<p>(2)<strong>/etc/sysconfig/network-scripts/ifcfg-eth0</strong></p>
+<p>设置网卡(eth0)的参数，包括Network、IP、NetMask、Broadcast、Gateway、是否是DHCP获取ip地址以及是否开机启动等</p>
+<p>(3)<strong>/etc/resolv.conf</strong></p>
+<p>设置DNS的文件</p>
+<p>(4)<strong>/etc/hosts</strong></p>
+<p>记录主机对应的IP地址，一行代表一条记录</p>
+<p>(5)<strong>/etc/services</strong></p>
+<p>记录TCP/IP上的所有协议的端口数，包括HTTP、FTP、SSH、Telnet等服务</p>
+<p>(6)<strong>/etc/protocols</strong></p>
+<p>定义IP数据包协议的相关数据，包括ICMP、TCP、UDP数据包协议的定义</p>
+<h1 id="3-常用命令"><a href="#3-常用命令" class="headerlink" title="3.常用命令"></a>3.常用命令</h1><p>对于下面介绍的命令，我不会写类似与man看到的内容，需要这样内容的请自行man一下，我只是写几个常用的命令和选项</p>
+<h3 id="ifconfig"><a href="#ifconfig" class="headerlink" title="ifconfig"></a>ifconfig</h3><p>手动启动、观察和修改网络借口(Network Interface)的相关参数</p>
+<p>(1)<strong>直接输入ifconfig或者ifconfig eth0</strong></p>
+<p>显示目前已经被启动的网卡和其相关参数，包括IP、MAC地址等</p>
+<p><img src="https://img-blog.csdn.net/20160314104632548" alt="img"></p>
+<p>(2)<strong>修改网络接口ip</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># ifconfig eth0 192.168.37.90   ##暂时将ip地址设置为192.168.37.90</span><br><span class="line"># ifconfig eth0 192.168.37.90 netmask 255.255.255.128 mtu 9000  ##设置NetworkMask和MTU</span><br><span class="line"># ifconfig eth0:0 192.168.50.90    ##在网卡上虚拟另外一个网络接口，就是在一块网卡上设置多个ip地址</span><br><span class="line"># ifconfig eth0:0 down   ##关闭此网络接口</span><br><span class="line"># /etc/init.d/network restart   ##重新启动整个网络，刚才的临时设置失效</span><br><span class="line">123456</span><br></pre></td></tr></table></figure>
+<h3 id="ifup-ifdown"><a href="#ifup-ifdown" class="headerlink" title="ifup/ifdown"></a>ifup/ifdown</h3><p>启动或者关闭网卡，以/etc/sysconfig/network-scripts/ifcfg-eth0这个配置文件里面的设置为准</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#ifup eth0   ##启动网卡</span><br><span class="line">#ifdown eth0   ##关闭网卡12</span><br></pre></td></tr></table></figure>
+<h3 id="route"><a href="#route" class="headerlink" title="route"></a>route</h3><p>(1)<strong>显示路由状态</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#route -n 1</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20160314115506303" alt="img"></p>
+<p>Destination和Mask合并起来就是个网段，上图的意思是:</p>
+<p><strong>169.254.0.0+Mask(255.255.0.0)=169.254.0.0/16 的网段的GateWay是0.0.0.0（直接由本机传送，通过局域网MAC直接传送）</strong></p>
+<p>同理可知其它的，不多说了</p>
+<blockquote>
+<p><strong>Flag的含义:</strong><br>U(route is up)：路由是启动的<br>G(use gateway)：需要通过外部的主机来传送数据包<br>H(target is a host)：目标是一台主机不是网段<br>R(reinstate route for dynamic routing)：使用动态路由时，恢复路由信息<br>D(dynamically installed by daemon or directed)：引进由服务器或转port功能设置为动态路由<br>M(modified from routing daemon or directed)：路由已经被修改了<br>!(reject route)：路由被阻止</p>
+</blockquote>
+<p>(2)<strong>路由增加与删除</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">route add [-net|-host][网段或者主机] netmask [mask] [gw|dev]  ##增加网段</span><br><span class="line">route del [-net|-host][网段或者主机] netmask [mask] [gw|dev]  ##删除网段12</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#route del -net 169.254.0.0 netmask 255.255.0.0 dev eth0   ##删除169.254.0.0/16这个网段</span><br><span class="line"></span><br><span class="line">#route add -net 192.168.30.0 netmask 255.255.255.0 dev eth0   ##增加192.168.30.0/24这个网段</span><br><span class="line"></span><br><span class="line">#route add default gw 10.170.72.254   ##设置默认路由</span><br><span class="line">123456</span><br></pre></td></tr></table></figure>
+<h3 id="dhclient"><a href="#dhclient" class="headerlink" title="dhclient"></a>dhclient</h3><p>使用DHCP协议在局域网取得IP</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># dhclient eth01</span><br></pre></td></tr></table></figure>
+<h3 id="ping"><a href="#ping" class="headerlink" title="ping"></a>ping</h3><blockquote>
+<p><strong>选项：</strong></p>
+<p><strong>-b:      broadcast ip</strong><br><strong>-c:      发送ICMP报文的数目</strong><br><strong>-n:     不进行IP与主机名称的反查，直接使用IP</strong><br><strong>-s:   发出的ICMP数据包的大小</strong><br><strong>-t:   TTL的数值，默认255</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># ping -c 5 www.baidu.com</span><br><span class="line"># ping -c 5 -b 192.168.10.255   ##ping整个网段12</span><br></pre></td></tr></table></figure>
+<h3 id="tracerout"><a href="#tracerout" class="headerlink" title="tracerout"></a>tracerout</h3><p>对到目的地的所有Router进行ICMP的超时等待，可查看回经过那些路由和时间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># tracerout -n www.baidu.com1</span><br></pre></td></tr></table></figure>
+<h3 id="netstat"><a href="#netstat" class="headerlink" title="netstat"></a>netstat</h3><p>查看网络接口所监听的端口</p>
+<blockquote>
+<p><strong>参数：</strong></p>
+<p><strong>-n:  不适用主机名称与服务名称，知使用IP和Port NUmber</strong><br><strong>-a:  列出所有的联机状态</strong><br><strong>-t:  仅列出TCP数据包的联机</strong><br><strong>-u:  仅列出UDP数据包的联机</strong><br><strong>-l:  仅列出在Listen状态的服务</strong><br><strong>-p:  列出程序PID和程序名</strong><br><strong>-c:  自动更新</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># netstat -an   ##列出所有的联机状态1</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20160314190846827" alt="img"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># netstat -tulnp   ##列出TCP和UDP在Listen的服务，同时显示PID和程序名1</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20160314191005233" alt="img"></p>
+<h3 id="host"><a href="#host" class="headerlink" title="host"></a>host</h3><p>查询主机对应的IP地址</p>
+<p><img src="https://img-blog.csdn.net/20160314191239586" alt="img"></p>
+<h3 id="nslookup"><a href="#nslookup" class="headerlink" title="nslookup"></a>nslookup</h3><p>查看DNS</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@local ~]# nslookup www.qq.com</span><br><span class="line">Server:     114.114.114.114</span><br><span class="line">Address:    114.114.114.114#53</span><br><span class="line"></span><br><span class="line">Non-authoritative answer:</span><br><span class="line">Name:   www.qq.com</span><br><span class="line">Address: 180.96.86.192</span><br><span class="line"></span><br><span class="line">[root@local ~]# ping www.qq.com</span><br><span class="line">PING www.qq.com (180.96.86.192) 56(84) bytes of data.</span><br><span class="line">64 bytes from 180.96.86.192: icmp_seq=1 ttl=54 time=9.60 ms</span><br><span class="line">64 bytes from 180.96.86.192: icmp_seq=2 ttl=54 time=9.33 ms</span><br></pre></td></tr></table></figure>
+<h3 id="telnet"><a href="#telnet" class="headerlink" title="telnet"></a>telnet</h3><p>远程管理，明文通信。数据包在互联网上不会被加密。建议少用。</p>
+<h3 id="traceroute"><a href="#traceroute" class="headerlink" title="traceroute"></a>traceroute</h3><p>跟踪查看路由命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@local ~]# traceroute www.baidu.com</span><br><span class="line">traceroute to www.baidu.com (180.97.33.107), 30 hops max, 60 byte packets</span><br><span class="line"> 1  192.168.70.70 (192.168.70.70)  0.275 ms  0.274 ms  0.223 ms</span><br><span class="line"> 2  192.168.1.1 (192.168.1.1)  0.555 ms  0.604 ms  0.534 ms</span><br><span class="line"> 3  100.73.0.1 (100.73.0.1)  3.010 ms  3.316 ms  3.267 ms</span><br><span class="line"> 4  222.187.235.217 (222.187.235.217)  2.718 ms  2.646 ms  2.585 ms</span><br><span class="line"> 5  222.187.235.105 (222.187.235.105)  13.826 ms  13.559 ms  13.826 ms</span><br><span class="line"> 6  202.102.73.122 (202.102.73.122)  16.276 ms 202.102.73.126 (202.102.73.126)  19.856 ms 202.102.69.186 (202.102.69.186)  13.546 ms</span><br><span class="line"> 7  * * *</span><br><span class="line"> 8  180.97.32.130 (180.97.32.130)  13.049 ms 180.97.32.26 (180.97.32.26)  139.445 ms 180.97.32.2 (180.97.32.2)  10.769 ms</span><br><span class="line"> 9  * * *</span><br><span class="line">[root@local ~]# ping www.baidu.com</span><br><span class="line">PING www.a.shifen.com (180.97.33.107) 56(84) bytes of data.</span><br><span class="line">64 bytes from 180.97.33.107: icmp_seq=1 ttl=55 time=9.25 ms</span><br><span class="line">64 bytes from 180.97.33.107: icmp_seq=2 ttl=55 time=9.55 ms</span><br><span class="line">64 bytes from 180.97.33.107: icmp_seq=3 ttl=55 time=9.30 ms</span><br></pre></td></tr></table></figure>
+<h3 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h3><p>下载命令</p>
+<h3 id="tcpdump"><a href="#tcpdump" class="headerlink" title="tcpdump"></a>tcpdump</h3><p>抓包命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@local 桌面]# tcpdump -i eth0 -nnX port 22</span><br></pre></td></tr></table></figure>
+<p>-i 指定监听的网卡</p>
+<p>-nn 将数据包中的域名与服务转为ip和端口</p>
+<p>-X 以16进制和ASCII码显示数据包内容</p>
+<p>prot指定监听的端口</p>
+<h3 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h3><p>远程上传或者下载</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# scp -r testscp/ root@192.168.70.77:/root</span><br><span class="line">The authenticity of host &apos;192.168.70.77 (192.168.70.77)&apos; can&apos;t be established.</span><br><span class="line">RSA key fingerprint is c1:d1:80:44:94:0b:e2:fb:b4:82:20:79:5f:94:5f:41.</span><br><span class="line">Are you sure you want to continue connecting (yes/no)? yes</span><br><span class="line">Warning: Permanently added &apos;192.168.70.77&apos; (RSA) to the list of known hosts.</span><br><span class="line">root@192.168.70.77&apos;s password: </span><br><span class="line">hello                                                                         100%   10     0.0KB/s   00:00</span><br></pre></td></tr></table></figure>
+<p>这个是上传。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost testscp]# scp -r root@192.168.70.77:/root/testscp /root</span><br><span class="line">root@192.168.70.77&apos;s password: </span><br><span class="line">hello                                                                         100%   10     0.0KB/s   00:00    </span><br><span class="line">world</span><br></pre></td></tr></table></figure>
+<p>这个是下载。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="bushionxw.github.io/2018/03/28/Linux网络相关/" data-id="cjfgs3ez70008m8uti68hqih4" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CMake相关" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/28/CMake相关/" class="article-date">
+  <time datetime="2018-03-28T12:31:50.000Z" itemprop="datePublished">2018-03-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/28/CMake相关/">CMake相关</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="bushionxw.github.io/2018/03/28/CMake相关/" data-id="cjfgs3eyv0002m8ut8ftfjez8" class="article-share-link">Teilen</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-404" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/03/19/404/" class="article-date">
@@ -102,7 +251,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/03/19/404/" data-id="cjey9ymtk00005wutp051xkwm" class="article-share-link">Teilen</a>
+      <a data-url="bushionxw.github.io/2018/03/19/404/" data-id="cjfgs3eyq0000m8utf3orrzhk" class="article-share-link">Teilen</a>
       
       
     </footer>
@@ -138,11 +287,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>例子：</p>
+<p>#main: test.cpp</p>
+<p>#gcc -o main test.cpp</p>
+<p>cc = gcc<br>prom = main<br>deps = func.h<br>source = test.cpp<br>obj = test.o func.o</p>
+<p>#deps = $(shell find ./ -name “*.h”)</p>
+<p>#src = $(shell find ./ -name “*.c”)</p>
+<p>$(prom): $(obj)<br>    $(cc) -o $(prom) $(obj)</p>
+<p>%.o: %.c $(deps)<br>    $(cc) -c $&lt; -o $@</p>
+<p>clean:<br>    rm -rf $(obj) $(prom)</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/03/18/MakeFile编码/" data-id="cjey9ymuj000k5wutzl3shbfv" class="article-share-link">Teilen</a>
+      <a data-url="bushionxw.github.io/2018/03/18/MakeFile编码/" data-id="cjfgs3ezu000km8utg9e80e1j" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -184,7 +342,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/03/18/Linux重定向/" data-id="cjey9ymua000d5wut4h2eqoqz" class="article-share-link">Teilen</a>
+      <a data-url="bushionxw.github.io/2018/03/18/Linux重定向/" data-id="cjfgs3ezj000fm8ut2olx6evy" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -226,7 +384,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/03/18/Linux管道/" data-id="cjey9ymu400095wutjy928i2s" class="article-share-link">Teilen</a>
+      <a data-url="bushionxw.github.io/2018/03/18/Linux管道/" data-id="cjfgs3ez90009m8utqxo0ajxr" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -280,7 +438,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/03/18/Linux环境变量/" data-id="cjey9ymu100075wutuv3w7ze0" class="article-share-link">Teilen</a>
+      <a data-url="bushionxw.github.io/2018/03/18/Linux环境变量/" data-id="cjfgs3ez00004m8utxnicul8r" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -361,7 +519,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/03/18/Linux进程管理/" data-id="cjey9ymul000n5wut4v5uwscv" class="article-share-link">Teilen</a>
+      <a data-url="bushionxw.github.io/2018/03/18/Linux进程管理/" data-id="cjfgs3ez50007m8utiqhgydjg" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -465,7 +623,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/03/18/Linux文件操作/" data-id="cjey9ymtw00045wutl2yoy475" class="article-share-link">Teilen</a>
+      <a data-url="bushionxw.github.io/2018/03/18/Linux文件操作/" data-id="cjfgs3f130010m8ut0fg3ypdy" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -562,91 +720,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/03/10/Linux管理账户/" data-id="cjey9ymu200085wut3l6bkpcv" class="article-share-link">Teilen</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-gawk操作用法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/10/gawk操作用法/" class="article-date">
-  <time datetime="2018-03-10T12:38:58.000Z" itemprop="datePublished">2018-03-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编码/">编码</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/10/gawk操作用法/">gawk操作用法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/03/10/gawk操作用法/" data-id="cjey9ymud000f5wut45b53qnj" class="article-share-link">Teilen</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-sed操作用法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/10/sed操作用法/" class="article-date">
-  <time datetime="2018-03-10T12:38:41.000Z" itemprop="datePublished">2018-03-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编码/">编码</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/10/sed操作用法/">sed操作用法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/03/10/sed操作用法/" data-id="cjey9ymuo000q5wuth09k5bqq" class="article-share-link">Teilen</a>
+      <a data-url="bushionxw.github.io/2018/03/10/Linux管理账户/" data-id="cjfgs3eze000dm8ut982w01yx" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -715,6 +789,14 @@
       <ul>
         
           <li>
+            <a href="/2018/03/28/Linux网络相关/">Linux网络相关</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/28/CMake相关/">CMake相关</a>
+          </li>
+        
+          <li>
             <a href="/2018/03/19/404/">(no title)</a>
           </li>
         
@@ -724,14 +806,6 @@
         
           <li>
             <a href="/2018/03/18/Linux重定向/">Linux重定向</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/18/Linux管道/">Linux管道</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/18/Linux环境变量/">Linux环境变量</a>
           </li>
         
       </ul>
