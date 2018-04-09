@@ -182,7 +182,27 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-查看目录"><a href="#1-查看目录" class="headerlink" title="1.查看目录"></a>1.查看目录</h1><h1 id="2-切换目录"><a href="#2-切换目录" class="headerlink" title="2.切换目录"></a>2.切换目录</h1><h1 id="3-切换账户"><a href="#3-切换账户" class="headerlink" title="3.切换账户"></a>3.切换账户</h1><h1 id="4-压缩"><a href="#4-压缩" class="headerlink" title="4.压缩"></a>4.压缩</h1><h1 id="5-磁盘"><a href="#5-磁盘" class="headerlink" title="5.磁盘"></a>5.磁盘</h1>
+        <h1 id="1-查看目录"><a href="#1-查看目录" class="headerlink" title="1.查看目录"></a>1.查看目录</h1><pre><code>ls -l
+</code></pre><p>​    ll</p>
+<h1 id="2-切换目录"><a href="#2-切换目录" class="headerlink" title="2.切换目录"></a>2.切换目录</h1><p>​    cd </p>
+<h1 id="3-切换账户"><a href="#3-切换账户" class="headerlink" title="3.切换账户"></a>3.切换账户</h1><p>​    su</p>
+<h1 id="4-压缩"><a href="#4-压缩" class="headerlink" title="4.压缩"></a>4.压缩</h1><p> tar<br>  解包：tar zxvf filename.tar<br>  打包：tar czvf filename.tar dirname<br>gz命令<br>  解压1：gunzip filename.gz<br>  解压2：gzip -d filename.gz<br>  压缩：gzip filename<br>      .tar.gz 和  .tgz<br>      解压：tar zxvf filename.tar.gz<br>      压缩：tar zcvf filename.tar.gz dirname<br>      压缩多个文件：tar zcvf filename.tar.gz dirname1 dirname2 dirname3…..<br>bz2命令<br>  解压1：bzip2 -d filename.bz2<br>  解压2：bunzip2 filename.bz2<br>  压缩：bzip2 -z filename<br>        .tar.bz2</p>
+<p>​       解压：tar jxvf filename.tar.bz2<br>       压缩：tar jcvf filename.tar.bz2 dirname<br>bz命令<br>    解压1：bzip2 -d filename.bz<br>    解压2：bunzip2 filename.bz<br>         .tar.bz<br>       解压：tar jxvf filename.tar.bz<br>z命令<br>    解压：uncompress filename.z<br>    压缩：compress filename<br>        .tar.z<br>          解压：tar zxvf filename.tar.z<br>          压缩：tar zcvf filename.tar.z dirname<br>zip命令</p>
+<p>​    解压：unzip filename.zip<br>    压缩：zip filename.zip dirname</p>
+<h1 id="5-磁盘"><a href="#5-磁盘" class="headerlink" title="5.磁盘"></a>5.磁盘</h1><h1 id="6-查看版本"><a href="#6-查看版本" class="headerlink" title="6.查看版本"></a>6.查看版本</h1><h2 id="6-1-查看系统版本"><a href="#6-1-查看系统版本" class="headerlink" title="6.1 查看系统版本"></a>6.1 查看系统版本</h2><p>​    1、# uname －a   （Linux查看版本当前操作系统内核信息）</p>
+<p>　　    Linux localhost.localdomain 2.4.20-8 #1 Thu Mar 13 17:54:28 EST 2003 i686 athlon i386 GNU/Linux</p>
+<p>　　2、# cat /proc/version （Linux查看当前操作系统版本信息）</p>
+<p>​              Linux version 2.4.20-8 (<a href="mailto:bhcompile@porky.devel.redhat.com" target="_blank" rel="noopener">bhcompile@porky.devel.redhat.com</a>)</p>
+<p>​              (gcc version 3.2.2 20030222 (Red Hat Linux 3.2.2-5)) #1 Thu Mar 13 17:54:28 EST 2003</p>
+<p>　　3、# cat /etc/issue  或cat /etc/redhat-release（Linux查看版本当前操作系统发行版信息）</p>
+<p>　　    Red Hat Linux release 9 (Shrike)</p>
+<p>　　4、# cat /proc/cpuinfo （Linux查看cpu相关信息，包括型号、主频、内核信息等）</p>
+<p>　　    processor        : 0<br>             vendor_id         : AuthenticAMD<br>　　    cpu family        : 15<br>　　    model             : 1<br>　　    model name      : AMD A4-3300M APU with Radeon(tm) HD Graphics<br>　　    stepping         : 0<br>　　    cpu MHz          : 1896.236<br>　    　    cache size       : 1024 KB<br>　　    fdiv_bug         : no<br>　　    hlt_bug          : no<br>　　    f00f_bug        : no<br>　　    coma_bug      : no<br>　　    fpu                : yes<br>　　    fpu_exception   : yes<br>　　    cpuid level      : 6<br>　　    wp                : yes<br>　　    flags             : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush         mmx fxsr </p>
+<p>​                  sse sse2 syscall mmxext lm 3dnowext 3dnow<br>　　    bogomips      : 3774.87</p>
+<p>　　5、# getconf LONG_BIT  （Linux查看版本说明当前CPU运行在32bit模式下， 但不代表CPU不支持64bit）</p>
+<p>　　    32</p>
+<p>　　6、# lsb_release -a</p>
+
       
     </div>
     <footer class="article-footer">

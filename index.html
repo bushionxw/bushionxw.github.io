@@ -296,6 +296,22 @@
 <p>$(prom): $(obj)<br>    $(cc) -o $(prom) $(obj)</p>
 <p>%.o: %.c $(deps)<br>    $(cc) -c $&lt; -o $@</p>
 <p>clean:<br>    rm -rf $(obj) $(prom)</p>
+<h1 id="1-命令"><a href="#1-命令" class="headerlink" title="1.命令"></a>1.命令</h1><h2 id="1-1让命令出错了也不停止"><a href="#1-1让命令出错了也不停止" class="headerlink" title="1.1让命令出错了也不停止"></a>1.1让命令出错了也不停止</h2><p>​     在命令前加“-”</p>
+<p>​    如： -rm  -f *.o</p>
+<h2 id="1-2自动寻找头文件"><a href="#1-2自动寻找头文件" class="headerlink" title="1.2自动寻找头文件"></a>1.2自动寻找头文件</h2><pre><code>方法1：编译器增加 -MM选项
+</code></pre><p>​    gcc -MM main.c</p>
+<p>​    方法2：生成.d文件</p>
+<p>​    %.d:  %.c</p>
+<p>​          @set -e; rm -f  $@;\</p>
+<p>​          $(gcc)  -M  $(CPPFLAGS)  $&lt;     &gt;  $@.$$$$;\</p>
+<p>​          sed ‘s,($<em>).o[:]</em>,\1.o $@:   ,g’   &lt;   $@.$$$$$       &gt;    $@;              \</p>
+<p>​           rm -f    $@.$$$$$</p>
+<h2 id="1-3引入其它的makefile"><a href="#1-3引入其它的makefile" class="headerlink" title="1.3引入其它的makefile"></a>1.3引入其它的makefile</h2><p>​    include</p>
+<p>​    例如：</p>
+<p>​    include $(source:.c=.d)</p>
+<h2 id="1-4传递变量"><a href="#1-4传递变量" class="headerlink" title="1.4传递变量"></a>1.4传递变量</h2><p>​    export</p>
+<p>​    例如：</p>
+<p>​    export var = value</p>
 
       
     </div>
