@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="bushionxw Blog">
 <meta property="og:description" content="1.查看目录ls -l ​    ll 2.切换目录​    cd  3.切换账户​    su 4.压缩 tar  解包：tar zxvf filename.tar  打包：tar czvf filename.tar dirnamegz命令  解压1：gunzip filename.gz  解压2：gzip -d filename.gz  压缩：gzip filename      .tar.g">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-09T13:05:52.543Z">
+<meta property="og:updated_time" content="2018-04-09T13:12:59.817Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux基本指令">
 <meta name="twitter:description" content="1.查看目录ls -l ​    ll 2.切换目录​    cd  3.切换账户​    su 4.压缩 tar  解包：tar zxvf filename.tar  打包：tar czvf filename.tar dirnamegz命令  解压1：gunzip filename.gz  解压2：gzip -d filename.gz  压缩：gzip filename      .tar.g">
@@ -66,7 +66,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="bushionxw.github.io"></form>
@@ -108,24 +108,38 @@
 <h1 id="4-压缩"><a href="#4-压缩" class="headerlink" title="4.压缩"></a>4.压缩</h1><p> tar<br>  解包：tar zxvf filename.tar<br>  打包：tar czvf filename.tar dirname<br>gz命令<br>  解压1：gunzip filename.gz<br>  解压2：gzip -d filename.gz<br>  压缩：gzip filename<br>      .tar.gz 和  .tgz<br>      解压：tar zxvf filename.tar.gz<br>      压缩：tar zcvf filename.tar.gz dirname<br>      压缩多个文件：tar zcvf filename.tar.gz dirname1 dirname2 dirname3…..<br>bz2命令<br>  解压1：bzip2 -d filename.bz2<br>  解压2：bunzip2 filename.bz2<br>  压缩：bzip2 -z filename<br>        .tar.bz2</p>
 <p>​       解压：tar jxvf filename.tar.bz2<br>       压缩：tar jcvf filename.tar.bz2 dirname<br>bz命令<br>    解压1：bzip2 -d filename.bz<br>    解压2：bunzip2 filename.bz<br>         .tar.bz<br>       解压：tar jxvf filename.tar.bz<br>z命令<br>    解压：uncompress filename.z<br>    压缩：compress filename<br>        .tar.z<br>          解压：tar zxvf filename.tar.z<br>          压缩：tar zcvf filename.tar.z dirname<br>zip命令</p>
 <p>​    解压：unzip filename.zip<br>    压缩：zip filename.zip dirname</p>
-<h1 id="5-磁盘"><a href="#5-磁盘" class="headerlink" title="5.磁盘"></a>5.磁盘</h1><h1 id="6-查看版本"><a href="#6-查看版本" class="headerlink" title="6.查看版本"></a>6.查看版本</h1><h2 id="6-1-查看系统版本"><a href="#6-1-查看系统版本" class="headerlink" title="6.1 查看系统版本"></a>6.1 查看系统版本</h2><p>​    1、# uname －a   （Linux查看版本当前操作系统内核信息）</p>
-<p>　　    Linux localhost.localdomain 2.4.20-8 #1 Thu Mar 13 17:54:28 EST 2003 i686 athlon i386 GNU/Linux</p>
-<p>　　2、# cat /proc/version （Linux查看当前操作系统版本信息）</p>
-<p>​              Linux version 2.4.20-8 (<a href="mailto:bhcompile@porky.devel.redhat.com" target="_blank" rel="noopener">bhcompile@porky.devel.redhat.com</a>)</p>
-<p>​              (gcc version 3.2.2 20030222 (Red Hat Linux 3.2.2-5)) #1 Thu Mar 13 17:54:28 EST 2003</p>
-<p>　　3、# cat /etc/issue  或cat /etc/redhat-release（Linux查看版本当前操作系统发行版信息）</p>
-<p>　　    Red Hat Linux release 9 (Shrike)</p>
-<p>　　4、# cat /proc/cpuinfo （Linux查看cpu相关信息，包括型号、主频、内核信息等）</p>
-<p>　　    processor        : 0<br>             vendor_id         : AuthenticAMD<br>　　    cpu family        : 15<br>　　    model             : 1<br>　　    model name      : AMD A4-3300M APU with Radeon(tm) HD Graphics<br>　　    stepping         : 0<br>　　    cpu MHz          : 1896.236<br>　    　    cache size       : 1024 KB<br>　　    fdiv_bug         : no<br>　　    hlt_bug          : no<br>　　    f00f_bug        : no<br>　　    coma_bug      : no<br>　　    fpu                : yes<br>　　    fpu_exception   : yes<br>　　    cpuid level      : 6<br>　　    wp                : yes<br>　　    flags             : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush         mmx fxsr </p>
-<p>​                  sse sse2 syscall mmxext lm 3dnowext 3dnow<br>　　    bogomips      : 3774.87</p>
-<p>　　5、# getconf LONG_BIT  （Linux查看版本说明当前CPU运行在32bit模式下， 但不代表CPU不支持64bit）</p>
-<p>　　    32</p>
-<p>　　6、# lsb_release -a</p>
+<h1 id="5-磁盘"><a href="#5-磁盘" class="headerlink" title="5.磁盘"></a>5.磁盘</h1><h1 id="6-查看版本"><a href="#6-查看版本" class="headerlink" title="6.查看版本"></a>6.查看版本</h1><h2 id="6-1-查看系统版本"><a href="#6-1-查看系统版本" class="headerlink" title="6.1 查看系统版本"></a>6.1 查看系统版本</h2><p>一、查看Linux内核版本命令（两种方法）：</p>
+<p>1、cat /proc/version</p>
+<blockquote>
+<p>[root@S-<a href="http://www.linuxidc.com/topicnews.aspx?tid=14" target="_blank" rel="noopener">CentOS</a> home]# cat /proc/version<br>Linux version 2.6.32-431.el6.x86_64 (<a href="mailto:mockbuild@c6b8.bsys.dev.centos.org" target="_blank" rel="noopener">mockbuild@c6b8.bsys.dev.centos.org</a>) (gcc version 4.4.7 20120313 (<a href="http://www.linuxidc.com/topicnews.aspx?tid=10" target="_blank" rel="noopener">Red Hat</a> 4.4.7-4) (GCC) ) #1 SMP Fri Nov 22 03:15:09 UTC 2013</p>
+</blockquote>
+<p>2、uname -a</p>
+<blockquote>
+<p>[root@S-CentOS home]# uname -a</p>
+<p>Linux S-CentOS 2.6.32-431.el6.x86_64 #1 SMP Fri Nov 22 03:15:09 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux</p>
+</blockquote>
+<p>二、查看Linux系统版本的命令（3种方法）：<br>1、lsb_release -a，即可列出所有版本信息：</p>
+<blockquote>
+<p>[root@S-CentOS ~]# lsb_release -a<br>LSB Version: :base-4.0-amd64:base-4.0-noarch:core-4.0-amd64:core-4.0-noarch:graphics-4.0-amd64:graphics-4.0-noarch:printing-4.0-amd64:printing-4.0-noarch<br>Distributor ID: CentOS<br>Description: CentOS release 6.5 (Final)<br>Release: 6.5<br>Codename: Final</p>
+</blockquote>
+<p><strong>这个命令适用于所有的Linux发行版</strong>，包括<a href="http://www.linuxidc.com/topicnews.aspx?tid=10" target="_blank" rel="noopener">RedHat</a>、<a href="http://www.linuxidc.com/topicnews.aspx?tid=3" target="_blank" rel="noopener">SUSE</a>、Debian…等发行版。</p>
+<p>2、cat /etc/redhat-release，这种方法只适合Redhat系的Linux：</p>
+<blockquote>
+<p>[root@S-CentOS home]# cat /etc/redhat-release<br>CentOS release 6.5 (Final)</p>
+</blockquote>
+<p>3、cat /etc/issue，此命令也适用于所有的Linux发行版。</p>
+<blockquote>
+<p>[root@S-CentOS home]# cat /etc/issue<br>CentOS release 6.5 (Final)<br>Kernel \r on an \m</p>
+</blockquote>
+<h2 id="6-2查看编译器版本"><a href="#6-2查看编译器版本" class="headerlink" title="6.2查看编译器版本"></a>6.2查看编译器版本</h2><p>gcc  -v</p>
+<p>gcc –version</p>
+<p>rpm -qa glibc、</p>
+<p>rpm -qa  zlib</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/03/10/Linux基本指令/" data-id="cjfgs3eyy0003m8ut13oidu5i" class="article-share-link">Teilen</a>
+      <a data-url="bushionxw.github.io/2018/03/10/Linux基本指令/" data-id="cjfgs3eyy0003m8ut13oidu5i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -137,7 +151,7 @@
 <nav id="article-nav">
   
     <a href="/2018/03/10/sed操作用法/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Neuer</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           sed操作用法
@@ -157,7 +171,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Kategorien</h3>
+    <h3 class="widget-title">Categories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/编码/">编码</a></li></ul>
     </div>
@@ -186,7 +200,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archiv</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li></ul>
     </div>
@@ -196,7 +210,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">letzter Beitrag</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
