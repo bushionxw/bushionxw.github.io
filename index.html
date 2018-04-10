@@ -61,7 +61,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="bushionxw.github.io"></form>
@@ -71,6 +71,92 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-Linux应用程序开发" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/10/Linux应用程序开发/" class="article-date">
+  <time datetime="2018-04-10T12:23:05.000Z" itemprop="datePublished">2018-04-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编码/">编码</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/10/Linux应用程序开发/">Linux应用程序开发</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-应用程序查看"><a href="#1-应用程序查看" class="headerlink" title="1.应用程序查看"></a>1.应用程序查看</h1><h2 id="1-1依赖库查看"><a href="#1-1依赖库查看" class="headerlink" title="1.1依赖库查看"></a>1.1依赖库查看</h2><p>​    ldd </p>
+<p>​    如： ldd ./test</p>
+<h1 id="2-gdb调试"><a href="#2-gdb调试" class="headerlink" title="2.gdb调试"></a>2.gdb调试</h1><h2 id="2-1调试流程"><a href="#2-1调试流程" class="headerlink" title="2.1调试流程"></a>2.1调试流程</h2><p>(1).gdb   programname            ：进入调试</p>
+<p>(2).break main  或者 break  行号      ：设置断点</p>
+<p>(3).run                ：开始执行</p>
+<p>(4).step或者s  ： 运行一行代码</p>
+<p>​    会进入调用函数内部</p>
+<p>(5).Enter          ：进入调用函数</p>
+<p>(6).print   表达式     ：打印</p>
+<p>​    如： print input</p>
+<p>(7).displaty  表达式    ：显示监视的数据</p>
+<p>​    如： display input</p>
+<p>(8).next或者n         :下一步</p>
+<p>​    不进入调用函数内部</p>
+<p>(9).quit          ：推出gdb调试</p>
+<p>(10). finish           :强制退出</p>
+<h2 id="2-2其它命令"><a href="#2-2其它命令" class="headerlink" title="2.2其它命令"></a>2.2其它命令</h2><h3 id="2-2-1printf"><a href="#2-2-1printf" class="headerlink" title="2.2.1printf"></a>2.2.1printf</h3><p>与c语言函数printf使用类似</p>
+<p>printf “%2.2s\n”,(char*)0x120015</p>
+<h3 id="2-2-2set"><a href="#2-2-2set" class="headerlink" title="2.2.2set"></a>2.2.2set</h3><p>修改变量的值</p>
+<p>set input=10</p>
+<h3 id="2-2-3break"><a href="#2-2-3break" class="headerlink" title="2.2.3break"></a>2.2.3break</h3><p>行号：</p>
+<p>break main.c:3</p>
+<p>函数：</p>
+<p>break getdata</p>
+<h3 id="2-2-4程序继续运行"><a href="#2-2-4程序继续运行" class="headerlink" title="2.2.4程序继续运行"></a>2.2.4程序继续运行</h3><p>在断点处停止后继续运行： continue 或者cont</p>
+<h3 id="2-2-5条件断点"><a href="#2-2-5条件断点" class="headerlink" title="2.2.5条件断点"></a>2.2.5条件断点</h3><p>condition</p>
+<p>如：</p>
+<p>condition 1 input=3</p>
+<h3 id="2-2-6断点启用"><a href="#2-2-6断点启用" class="headerlink" title="2.2.6断点启用"></a>2.2.6断点启用</h3><p>disable</p>
+<p>enable</p>
+<p>delete</p>
+<p>clear</p>
+<h3 id="2-2-7查看堆栈信息"><a href="#2-2-7查看堆栈信息" class="headerlink" title="2.2.7查看堆栈信息"></a>2.2.7查看堆栈信息</h3><p>backtrace或者bt</p>
+<p>bt <n></n></p>
+<p>bt <-n></-n></p>
+<p>frame <n>   或者  f <n></n></n></p>
+<p>当前栈信息  frame 或者 f</p>
+<p>info frame 或者 info f</p>
+<h3 id="2-2-8查看源代码"><a href="#2-2-8查看源代码" class="headerlink" title="2.2.8查看源代码"></a>2.2.8查看源代码</h3><p>list</p>
+<p>list <linenum></linenum></p>
+<p>list <function></function></p>
+<p>list -</p>
+<p>list +</p>
+<p>list <firstnum>,<lastnum></lastnum></firstnum></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="bushionxw.github.io/2018/04/10/Linux应用程序开发/" data-id="cjftqnftv0003aoutgqcj4znd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-Linux网络相关" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -173,7 +259,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/03/28/Linux网络相关/" data-id="cjfgs3ez70008m8uti68hqih4" class="article-share-link">Teilen</a>
+      <a data-url="bushionxw.github.io/2018/03/28/Linux网络相关/" data-id="cjftqnfvo0013aoutdry3dxvx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -211,7 +297,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/03/28/CMake相关/" data-id="cjfgs3eyv0002m8ut8ftfjez8" class="article-share-link">Teilen</a>
+      <a data-url="bushionxw.github.io/2018/03/28/CMake相关/" data-id="cjftqnftq0001aoutrt6y8365" class="article-share-link">Share</a>
       
       
     </footer>
@@ -251,7 +337,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/03/19/404/" data-id="cjfgs3eyq0000m8utf3orrzhk" class="article-share-link">Teilen</a>
+      <a data-url="bushionxw.github.io/2018/03/19/404/" data-id="cjftqnftm0000aoutm7tbt18m" class="article-share-link">Share</a>
       
       
     </footer>
@@ -316,7 +402,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/03/18/MakeFile编码/" data-id="cjfgs3ezu000km8utg9e80e1j" class="article-share-link">Teilen</a>
+      <a data-url="bushionxw.github.io/2018/03/18/MakeFile编码/" data-id="cjftqnfuw000laoutwsrpa8dw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -358,7 +444,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/03/18/Linux重定向/" data-id="cjfgs3ezj000fm8ut2olx6evy" class="article-share-link">Teilen</a>
+      <a data-url="bushionxw.github.io/2018/03/18/Linux重定向/" data-id="cjftqnfv6000taoutkt50o2bi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -400,7 +486,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/03/18/Linux管道/" data-id="cjfgs3ez90009m8utqxo0ajxr" class="article-share-link">Teilen</a>
+      <a data-url="bushionxw.github.io/2018/03/18/Linux管道/" data-id="cjftqnfus000jaout5d5m9rhj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -454,7 +540,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/03/18/Linux环境变量/" data-id="cjfgs3ez00004m8utxnicul8r" class="article-share-link">Teilen</a>
+      <a data-url="bushionxw.github.io/2018/03/18/Linux环境变量/" data-id="cjftqnfu00006aout1nlpipjh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -535,7 +621,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/03/18/Linux进程管理/" data-id="cjfgs3ez50007m8utiqhgydjg" class="article-share-link">Teilen</a>
+      <a data-url="bushionxw.github.io/2018/03/18/Linux进程管理/" data-id="cjftqnfvi0010aoutfh5gk5wa" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -639,104 +725,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/03/18/Linux文件操作/" data-id="cjfgs3f130010m8ut0fg3ypdy" class="article-share-link">Teilen</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Linux管理账户" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/10/Linux管理账户/" class="article-date">
-  <time datetime="2018-03-10T12:40:30.000Z" itemprop="datePublished">2018-03-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编码/">编码</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/10/Linux管理账户/">Linux管理账户</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-添加用户"><a href="#1-添加用户" class="headerlink" title="1.添加用户"></a>1.添加用户</h1><h2 id="1-1-功能"><a href="#1-1-功能" class="headerlink" title="1.1 功能"></a>1.1 功能</h2><p>添加新用户</p>
-<p>useradd</p>
-<h2 id="1-2-参数含义"><a href="#1-2-参数含义" class="headerlink" title="1.2 参数含义"></a>1.2 参数含义</h2><p>-c    添加备注</p>
-<p>-d     为主目录制定名字</p>
-<p>-e    用YYYYY-MM-DD 指定账户过期日期</p>
-<p>-f     指定密码过期后多少天禁用账户，0：一过期就禁用，-1：禁用这个功能</p>
-<p>-g    指定用户登陆组的GID或者组名,修改替换默认用户组</p>
-<p>-G    指定用户除登陆组之外的所有组，增加新的用户组</p>
-<p>-k    和-m一起使用，将/etc/skel目录聂荣复制到HOME目录</p>
-<p>-m    创建用户的HOME目录</p>
-<p>-M    不创建用户的HOME目录</p>
-<p>-n    创建一个与用户登陆同名的新组</p>
-<p>-r    创建系统账户</p>
-<p>-p    为用户账户指定默认密码</p>
-<p>-s    指定默认登陆shell</p>
-<p>-u    指定账户的UID</p>
-<h2 id="1-3-例子"><a href="#1-3-例子" class="headerlink" title="1.3 例子"></a>1.3 例子</h2><p>查看用户默认值</p>
-<p>useradd  -D</p>
-<p>添加新用户:创建Home目录</p>
-<p>useradd -m test</p>
-<h1 id="2-删除用户"><a href="#2-删除用户" class="headerlink" title="2.删除用户"></a>2.删除用户</h1><p>userdel</p>
-<p>只删除用户信息（/etc/passwd）：</p>
-<p>userdel test</p>
-<p>删除用户所有文件:home目录及邮件目录</p>
-<p>userdel -r test</p>
-<h2 id="3-修改用户"><a href="#3-修改用户" class="headerlink" title="3.修改用户"></a>3.修改用户</h2><h2 id="3-1-usermod"><a href="#3-1-usermod" class="headerlink" title="3.1 usermod"></a>3.1 usermod</h2><h3 id="3-1-2-参数"><a href="#3-1-2-参数" class="headerlink" title="3.1.2 参数"></a>3.1.2 参数</h3><p>-l    修改账户的登录名</p>
-<p>-L    锁定账户，</p>
-<p>-p    修改账户密码</p>
-<p>-U    解除锁定</p>
-<p>3.1.3 例子</p>
-<p>3.2 passwd</p>
-<h3 id="3-2-1-功能"><a href="#3-2-1-功能" class="headerlink" title="3.2.1 功能"></a>3.2.1 功能</h3><p>修改用户密码</p>
-<h3 id="3-2-2-例子"><a href="#3-2-2-例子" class="headerlink" title="3.2.2 例子"></a>3.2.2 例子</h3><p>修改单个用户密码</p>
-<p>passwd test</p>
-<p>批量修改密码</p>
-<p>chpasswd &lt; users.txt</p>
-<p>​    users.txt格式：userid:passwd</p>
-<p>3.3 修改账户有效期</p>
-<p>chage</p>
-<p>参数</p>
-<p>-d    设置上次修改密码到现在的天数</p>
-<p>-E    设置密码过期的日期</p>
-<p>-I    设置密码过期到锁定账户的天数</p>
-<p>-m    设置修改密码之间最少要多少天</p>
-<p>-W    设置密码过期前多久开始提醒</p>
-<h1 id="4-用户组"><a href="#4-用户组" class="headerlink" title="4.用户组"></a>4.用户组</h1><h2 id="4-1-创建新组"><a href="#4-1-创建新组" class="headerlink" title="4.1 创建新组"></a>4.1 创建新组</h2><p>groupadd</p>
-<p>例子：</p>
-<p>groupadd shared</p>
-<p>用户增加用户组(-G:增加，-g:替换修改)</p>
-<p>usermod -G shared test</p>
-<h2 id="4-2-修改组"><a href="#4-2-修改组" class="headerlink" title="4.2 修改组"></a>4.2 修改组</h2><p>groupmod</p>
-<p>groupmod -n sharing shared</p>
-<h1 id="5-sudo权限"><a href="#5-sudo权限" class="headerlink" title="5.sudo权限"></a>5.sudo权限</h1><p>1.添加文件的写权限。也就是输入命令”chmod u+w /etc/sudoers”。  </p>
-<p>2.编辑/etc/sudoers文件。也就是输入命令”vim /etc/sudoers”,进入编辑模式，找到这一 行：”root ALL=(ALL) ALL”（会用vim编辑器的可以使用“/root ALL=(ALL)ALL”定位）在起下面添加”xxx ALL=(ALL) ALL”(这里的xxx是你的用户名)，然后保存退出。 </p>
-<p>3.撤销文件的写权限。也就是输入命令”chmod u-w /etc/sudoers”。 </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/03/10/Linux管理账户/" data-id="cjfgs3eze000dm8ut982w01yx" class="article-share-link">Teilen</a>
+      <a data-url="bushionxw.github.io/2018/03/18/Linux文件操作/" data-id="cjftqnfvq0014aout1zc0zvqw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -752,7 +741,7 @@
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">weiter &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -761,7 +750,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Kategorien</h3>
+    <h3 class="widget-title">Categories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/编码/">编码</a></li></ul>
     </div>
@@ -790,9 +779,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archiv</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li></ul>
     </div>
   </div>
 
@@ -800,9 +789,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">letzter Beitrag</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/04/10/Linux应用程序开发/">Linux应用程序开发</a>
+          </li>
         
           <li>
             <a href="/2018/03/28/Linux网络相关/">Linux网络相关</a>
@@ -818,10 +811,6 @@
         
           <li>
             <a href="/2018/03/18/MakeFile编码/">MakeFile编码</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/18/Linux重定向/">Linux重定向</a>
           </li>
         
       </ul>

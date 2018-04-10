@@ -5,20 +5,20 @@
   
 
   
-  <title>MakeFile编码 | bushionxw Blog</title>
+  <title>Linux应用程序开发 | bushionxw Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="例子： #main: test.cpp #gcc -o main test.cpp cc = gccprom = maindeps = func.hsource = test.cppobj = test.o func.o #deps = $(shell find ./ -name “*.h”) #src = $(shell find ./ -name “*.c”) $(prom): $(obj)">
+  <meta name="description" content="1.应用程序查看1.1依赖库查看​    ldd  ​    如： ldd ./test 2.gdb调试2.1调试流程(1).gdb   programname            ：进入调试 (2).break main  或者 break  行号      ：设置断点 (3).run                ：开始执行 (4).step或者s  ： 运行一行代码 ​    会进入调用函">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MakeFile编码">
-<meta property="og:url" content="bushionxw.github.io/2018/03/18/MakeFile编码/index.html">
+<meta property="og:title" content="Linux应用程序开发">
+<meta property="og:url" content="bushionxw.github.io/2018/04/10/Linux应用程序开发/index.html">
 <meta property="og:site_name" content="bushionxw Blog">
-<meta property="og:description" content="例子： #main: test.cpp #gcc -o main test.cpp cc = gccprom = maindeps = func.hsource = test.cppobj = test.o func.o #deps = $(shell find ./ -name “*.h”) #src = $(shell find ./ -name “*.c”) $(prom): $(obj)">
+<meta property="og:description" content="1.应用程序查看1.1依赖库查看​    ldd  ​    如： ldd ./test 2.gdb调试2.1调试流程(1).gdb   programname            ：进入调试 (2).break main  或者 break  行号      ：设置断点 (3).run                ：开始执行 (4).step或者s  ： 运行一行代码 ​    会进入调用函">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-02T14:25:24.630Z">
+<meta property="og:updated_time" content="2018-04-10T14:05:26.916Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MakeFile编码">
-<meta name="twitter:description" content="例子： #main: test.cpp #gcc -o main test.cpp cc = gccprom = maindeps = func.hsource = test.cppobj = test.o func.o #deps = $(shell find ./ -name “*.h”) #src = $(shell find ./ -name “*.c”) $(prom): $(obj)">
+<meta name="twitter:title" content="Linux应用程序开发">
+<meta name="twitter:description" content="1.应用程序查看1.1依赖库查看​    ldd  ​    如： ldd ./test 2.gdb调试2.1调试流程(1).gdb   programname            ：进入调试 (2).break main  或者 break  行号      ：设置断点 (3).run                ：开始执行 (4).step或者s  ： 运行一行代码 ​    会进入调用函">
   
     <link rel="alternate" href="/atom.xml" title="bushionxw Blog" type="application/atom+xml">
   
@@ -75,10 +75,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-MakeFile编码" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Linux应用程序开发" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/03/18/MakeFile编码/" class="article-date">
-  <time datetime="2018-03-18T12:53:37.000Z" itemprop="datePublished">2018-03-18</time>
+    <a href="/2018/04/10/Linux应用程序开发/" class="article-date">
+  <time datetime="2018-04-10T12:23:05.000Z" itemprop="datePublished">2018-04-10</time>
 </a>
     
   <div class="article-category">
@@ -93,7 +93,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      MakeFile编码
+      Linux应用程序开发
     </h1>
   
 
@@ -101,36 +101,55 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>例子：</p>
-<p>#main: test.cpp</p>
-<p>#gcc -o main test.cpp</p>
-<p>cc = gcc<br>prom = main<br>deps = func.h<br>source = test.cpp<br>obj = test.o func.o</p>
-<p>#deps = $(shell find ./ -name “*.h”)</p>
-<p>#src = $(shell find ./ -name “*.c”)</p>
-<p>$(prom): $(obj)<br>    $(cc) -o $(prom) $(obj)</p>
-<p>%.o: %.c $(deps)<br>    $(cc) -c $&lt; -o $@</p>
-<p>clean:<br>    rm -rf $(obj) $(prom)</p>
-<h1 id="1-命令"><a href="#1-命令" class="headerlink" title="1.命令"></a>1.命令</h1><h2 id="1-1让命令出错了也不停止"><a href="#1-1让命令出错了也不停止" class="headerlink" title="1.1让命令出错了也不停止"></a>1.1让命令出错了也不停止</h2><p>​     在命令前加“-”</p>
-<p>​    如： -rm  -f *.o</p>
-<h2 id="1-2自动寻找头文件"><a href="#1-2自动寻找头文件" class="headerlink" title="1.2自动寻找头文件"></a>1.2自动寻找头文件</h2><pre><code>方法1：编译器增加 -MM选项
-</code></pre><p>​    gcc -MM main.c</p>
-<p>​    方法2：生成.d文件</p>
-<p>​    %.d:  %.c</p>
-<p>​          @set -e; rm -f  $@;\</p>
-<p>​          $(gcc)  -M  $(CPPFLAGS)  $&lt;     &gt;  $@.$$$$;\</p>
-<p>​          sed ‘s,($<em>).o[:]</em>,\1.o $@:   ,g’   &lt;   $@.$$$$$       &gt;    $@;              \</p>
-<p>​           rm -f    $@.$$$$$</p>
-<h2 id="1-3引入其它的makefile"><a href="#1-3引入其它的makefile" class="headerlink" title="1.3引入其它的makefile"></a>1.3引入其它的makefile</h2><p>​    include</p>
-<p>​    例如：</p>
-<p>​    include $(source:.c=.d)</p>
-<h2 id="1-4传递变量"><a href="#1-4传递变量" class="headerlink" title="1.4传递变量"></a>1.4传递变量</h2><p>​    export</p>
-<p>​    例如：</p>
-<p>​    export var = value</p>
+        <h1 id="1-应用程序查看"><a href="#1-应用程序查看" class="headerlink" title="1.应用程序查看"></a>1.应用程序查看</h1><h2 id="1-1依赖库查看"><a href="#1-1依赖库查看" class="headerlink" title="1.1依赖库查看"></a>1.1依赖库查看</h2><p>​    ldd </p>
+<p>​    如： ldd ./test</p>
+<h1 id="2-gdb调试"><a href="#2-gdb调试" class="headerlink" title="2.gdb调试"></a>2.gdb调试</h1><h2 id="2-1调试流程"><a href="#2-1调试流程" class="headerlink" title="2.1调试流程"></a>2.1调试流程</h2><p>(1).gdb   programname            ：进入调试</p>
+<p>(2).break main  或者 break  行号      ：设置断点</p>
+<p>(3).run                ：开始执行</p>
+<p>(4).step或者s  ： 运行一行代码</p>
+<p>​    会进入调用函数内部</p>
+<p>(5).Enter          ：进入调用函数</p>
+<p>(6).print   表达式     ：打印</p>
+<p>​    如： print input</p>
+<p>(7).displaty  表达式    ：显示监视的数据</p>
+<p>​    如： display input</p>
+<p>(8).next或者n         :下一步</p>
+<p>​    不进入调用函数内部</p>
+<p>(9).quit          ：推出gdb调试</p>
+<p>(10). finish           :强制退出</p>
+<h2 id="2-2其它命令"><a href="#2-2其它命令" class="headerlink" title="2.2其它命令"></a>2.2其它命令</h2><h3 id="2-2-1printf"><a href="#2-2-1printf" class="headerlink" title="2.2.1printf"></a>2.2.1printf</h3><p>与c语言函数printf使用类似</p>
+<p>printf “%2.2s\n”,(char*)0x120015</p>
+<h3 id="2-2-2set"><a href="#2-2-2set" class="headerlink" title="2.2.2set"></a>2.2.2set</h3><p>修改变量的值</p>
+<p>set input=10</p>
+<h3 id="2-2-3break"><a href="#2-2-3break" class="headerlink" title="2.2.3break"></a>2.2.3break</h3><p>行号：</p>
+<p>break main.c:3</p>
+<p>函数：</p>
+<p>break getdata</p>
+<h3 id="2-2-4程序继续运行"><a href="#2-2-4程序继续运行" class="headerlink" title="2.2.4程序继续运行"></a>2.2.4程序继续运行</h3><p>在断点处停止后继续运行： continue 或者cont</p>
+<h3 id="2-2-5条件断点"><a href="#2-2-5条件断点" class="headerlink" title="2.2.5条件断点"></a>2.2.5条件断点</h3><p>condition</p>
+<p>如：</p>
+<p>condition 1 input=3</p>
+<h3 id="2-2-6断点启用"><a href="#2-2-6断点启用" class="headerlink" title="2.2.6断点启用"></a>2.2.6断点启用</h3><p>disable</p>
+<p>enable</p>
+<p>delete</p>
+<p>clear</p>
+<h3 id="2-2-7查看堆栈信息"><a href="#2-2-7查看堆栈信息" class="headerlink" title="2.2.7查看堆栈信息"></a>2.2.7查看堆栈信息</h3><p>backtrace或者bt</p>
+<p>bt <n></n></p>
+<p>bt <-n></-n></p>
+<p>frame <n>   或者  f <n></n></n></p>
+<p>当前栈信息  frame 或者 f</p>
+<p>info frame 或者 info f</p>
+<h3 id="2-2-8查看源代码"><a href="#2-2-8查看源代码" class="headerlink" title="2.2.8查看源代码"></a>2.2.8查看源代码</h3><p>list</p>
+<p>list <linenum></linenum></p>
+<p>list <function></function></p>
+<p>list -</p>
+<p>list +</p>
+<p>list <firstnum>,<lastnum></lastnum></firstnum></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/03/18/MakeFile编码/" data-id="cjftqnfuw000laoutwsrpa8dw" class="article-share-link">Share</a>
+      <a data-url="bushionxw.github.io/2018/04/10/Linux应用程序开发/" data-id="cjftqnftv0003aoutgqcj4znd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -141,19 +160,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/03/19/404/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/03/18/Linux重定向/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/03/28/Linux网络相关/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Linux重定向</div>
+      <div class="article-nav-title">Linux网络相关</div>
     </a>
   
 </nav>
