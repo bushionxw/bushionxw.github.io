@@ -7,18 +7,18 @@
   
   <title>Linux应用程序开发 | bushionxw Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.应用程序查看1.1依赖库查看​    ldd  ​    如： ldd ./test 2.gdb调试2.1调试流程(1).gdb   programname            ：进入调试 (2).break main  或者 break  行号      ：设置断点 (3).run                ：开始执行 (4).step或者s  ： 运行一行代码 ​    会进入调用函">
+  <meta name="description" content="1.应用程序查看1.1依赖库查看​    ldd  ​    如： ldd ./test 123456789ldd &amp;lt;可执行文件名&amp;gt;       查看可执行文件链接了哪些  系统动态链接库nm &amp;lt;可执行文件名&amp;gt;       查看可执行文件里面有哪些符号strip &amp;lt;可执行文件名&amp;gt;      去除符号表可以给可执行文件瘦身如果我们想从可执行程序里面提取出来一点什么">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux应用程序开发">
 <meta property="og:url" content="bushionxw.github.io/2018/04/10/Linux应用程序开发/index.html">
 <meta property="og:site_name" content="bushionxw Blog">
-<meta property="og:description" content="1.应用程序查看1.1依赖库查看​    ldd  ​    如： ldd ./test 2.gdb调试2.1调试流程(1).gdb   programname            ：进入调试 (2).break main  或者 break  行号      ：设置断点 (3).run                ：开始执行 (4).step或者s  ： 运行一行代码 ​    会进入调用函">
+<meta property="og:description" content="1.应用程序查看1.1依赖库查看​    ldd  ​    如： ldd ./test 123456789ldd &amp;lt;可执行文件名&amp;gt;       查看可执行文件链接了哪些  系统动态链接库nm &amp;lt;可执行文件名&amp;gt;       查看可执行文件里面有哪些符号strip &amp;lt;可执行文件名&amp;gt;      去除符号表可以给可执行文件瘦身如果我们想从可执行程序里面提取出来一点什么">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-10T14:05:26.916Z">
+<meta property="og:updated_time" content="2018-04-19T14:14:47.746Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux应用程序开发">
-<meta name="twitter:description" content="1.应用程序查看1.1依赖库查看​    ldd  ​    如： ldd ./test 2.gdb调试2.1调试流程(1).gdb   programname            ：进入调试 (2).break main  或者 break  行号      ：设置断点 (3).run                ：开始执行 (4).step或者s  ： 运行一行代码 ​    会进入调用函">
+<meta name="twitter:description" content="1.应用程序查看1.1依赖库查看​    ldd  ​    如： ldd ./test 123456789ldd &amp;lt;可执行文件名&amp;gt;       查看可执行文件链接了哪些  系统动态链接库nm &amp;lt;可执行文件名&amp;gt;       查看可执行文件里面有哪些符号strip &amp;lt;可执行文件名&amp;gt;      去除符号表可以给可执行文件瘦身如果我们想从可执行程序里面提取出来一点什么">
   
     <link rel="alternate" href="/atom.xml" title="bushionxw Blog" type="application/atom+xml">
   
@@ -66,7 +66,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="bushionxw.github.io"></form>
@@ -103,6 +103,21 @@
       
         <h1 id="1-应用程序查看"><a href="#1-应用程序查看" class="headerlink" title="1.应用程序查看"></a>1.应用程序查看</h1><h2 id="1-1依赖库查看"><a href="#1-1依赖库查看" class="headerlink" title="1.1依赖库查看"></a>1.1依赖库查看</h2><p>​    ldd </p>
 <p>​    如： ldd ./test</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ldd &lt;可执行文件名&gt;       查看可执行文件链接了哪些  </span><br><span class="line">系统动态链接库</span><br><span class="line">nm &lt;可执行文件名&gt;       </span><br><span class="line">查看可执行文件里面有哪些符号</span><br><span class="line">strip &lt;可执行文件名&gt;      </span><br><span class="line">去除符号表可以给可执行文件瘦身</span><br><span class="line">如果我们想从可执行程序里面提取出来一点什么文本信息的话，还可以用strings命令</span><br><span class="line">strings </span><br><span class="line">&lt;可执行文件名&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="1-2strings"><a href="#1-2strings" class="headerlink" title="1.2strings"></a>1.2strings</h2><p>strings命令很简单， 看起来好像没什么， 但实际有很多用途。 下面， 我来举一个例子。  在大型的软件开发中， 假设有100个.c/.cpp文件， 这个.cpp文件最终生成10个.so库， 那么怎样才能快速知道某个.c/.cpp文件编译到那个.so库中去了呢？ 当然， 你可能要说， 看makefile不就知道了。 对， 看makefile肯定可以， 但如下方法更好， 直接用命令：</p>
+<p>​      strings -f “*.so” | grep “xxxxxx”</p>
+<p>查看依赖库</p>
+<p>​    strings -a *.so | grep GCC</p>
+<p>​    strings -a *.so | grep GLIB</p>
+<p><strong>strings命令</strong>在对象文件或二进制文件中查找可打印的字符串。字符串是4个或更多可打印字符的任意序列，以换行符或空字符结束。 strings命令对识别随机对象文件很有用。 </p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strings [ -a ] [ - ] [ -o ] [ -t Format ] [ -n Number ] [ -Number ] [ file ... ]</span><br></pre></td></tr></table></figure>
+<h3 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-a --all：扫描整个文件而不是只扫描目标文件初始化和装载段</span><br><span class="line">-f –print-file-name：在显示字符串前先显示文件名</span><br><span class="line">-n –bytes=[number]：找到并且输出所有NUL终止符序列</span><br><span class="line">- ：设置显示的最少的字符数，默认是4个字符</span><br><span class="line">-t --radix=&#123;o,d,x&#125; ：输出字符的位置，基于八进制，十进制或者十六进制</span><br><span class="line">-o ：类似--radix=o</span><br><span class="line">-T --target= ：指定二进制文件格式</span><br><span class="line">-e --encoding=&#123;s,S,b,l,B,L&#125; ：选择字符大小和排列顺序:s = 7-bit, S = 8-bit, &#123;b,l&#125; = 16-bit, &#123;B,L&#125; = 32-bit</span><br><span class="line">@ ：读取中选项</span><br></pre></td></tr></table></figure>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>列出<a href="http://man.linuxde.net/ls" target="_blank" rel="noopener">ls</a>中所有的ASCII文本： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strings /bin/ls</span><br></pre></td></tr></table></figure>
+<p>列出ls中所有的ASCII文本： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /bin/ls strings</span><br></pre></td></tr></table></figure>
+<p>查找ls中包含libc的字符串，不区分大小写： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strings /bin/ls | grep -i libc</span><br></pre></td></tr></table></figure>
 <h1 id="2-gdb调试"><a href="#2-gdb调试" class="headerlink" title="2.gdb调试"></a>2.gdb调试</h1><h2 id="2-1调试流程"><a href="#2-1调试流程" class="headerlink" title="2.1调试流程"></a>2.1调试流程</h2><p>(1).gdb   programname            ：进入调试</p>
 <p>(2).break main  或者 break  行号      ：设置断点</p>
 <p>(3).run                ：开始执行</p>
@@ -149,7 +164,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/04/10/Linux应用程序开发/" data-id="cjg6jfof80009hcut9xs19gj2" class="article-share-link">Teilen</a>
+      <a data-url="bushionxw.github.io/2018/04/10/Linux应用程序开发/" data-id="cjg6jfof80009hcut9xs19gj2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -161,7 +176,7 @@
 <nav id="article-nav">
   
     <a href="/2018/04/19/windows操作linux/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Neuer</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           windows操作linux
@@ -171,7 +186,7 @@
   
   
     <a href="/2018/03/28/Linux网络相关/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Älter</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">Linux网络相关</div>
     </a>
   
@@ -186,7 +201,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Kategorien</h3>
+    <h3 class="widget-title">Categories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/编码/">编码</a></li></ul>
     </div>
@@ -215,7 +230,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archiv</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li></ul>
     </div>
@@ -225,7 +240,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">letzter Beitrag</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
