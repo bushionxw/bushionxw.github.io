@@ -5,20 +5,15 @@
   
 
   
-  <title>MakeFile编码 | bushionxw Blog</title>
+  <title>Tag: C# | bushionxw Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="例子： #main: test.cpp #gcc -o main test.cpp cc = gccprom = maindeps = func.hsource = test.cppobj = test.o func.o #deps = $(shell find ./ -name “*.h”) #src = $(shell find ./ -name “*.c”) $(prom): $(obj)">
-<meta name="keywords" content="Linux">
-<meta property="og:type" content="article">
-<meta property="og:title" content="MakeFile编码">
-<meta property="og:url" content="bushionxw.github.io/2018/03/18/MakeFile编码/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="bushionxw Blog">
+<meta property="og:url" content="bushionxw.github.io/tags/C/index.html">
 <meta property="og:site_name" content="bushionxw Blog">
-<meta property="og:description" content="例子： #main: test.cpp #gcc -o main test.cpp cc = gccprom = maindeps = func.hsource = test.cppobj = test.o func.o #deps = $(shell find ./ -name “*.h”) #src = $(shell find ./ -name “*.c”) $(prom): $(obj)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-02T14:25:24.630Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MakeFile编码">
-<meta name="twitter:description" content="例子： #main: test.cpp #gcc -o main test.cpp cc = gccprom = maindeps = func.hsource = test.cppobj = test.o func.o #deps = $(shell find ./ -name “*.h”) #src = $(shell find ./ -name “*.c”) $(prom): $(obj)">
+<meta name="twitter:title" content="bushionxw Blog">
   
     <link rel="alternate" href="/atom.xml" title="bushionxw Blog" type="application/atom+xml">
   
@@ -75,91 +70,40 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-MakeFile编码" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/18/MakeFile编码/" class="article-date">
-  <time datetime="2018-03-18T12:53:37.000Z" itemprop="datePublished">2018-03-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编码/">编码</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      MakeFile编码
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2018/04/26/CSharp设计模式/" class="archive-article-date">
+  <time datetime="2018-04-26T14:02:05.000Z" itemprop="datePublished">4月 26</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/04/26/CSharp设计模式/">CSharp设计模式</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>例子：</p>
-<p>#main: test.cpp</p>
-<p>#gcc -o main test.cpp</p>
-<p>cc = gcc<br>prom = main<br>deps = func.h<br>source = test.cpp<br>obj = test.o func.o</p>
-<p>#deps = $(shell find ./ -name “*.h”)</p>
-<p>#src = $(shell find ./ -name “*.c”)</p>
-<p>$(prom): $(obj)<br>    $(cc) -o $(prom) $(obj)</p>
-<p>%.o: %.c $(deps)<br>    $(cc) -c $&lt; -o $@</p>
-<p>clean:<br>    rm -rf $(obj) $(prom)</p>
-<h1 id="1-命令"><a href="#1-命令" class="headerlink" title="1.命令"></a>1.命令</h1><h2 id="1-1让命令出错了也不停止"><a href="#1-1让命令出错了也不停止" class="headerlink" title="1.1让命令出错了也不停止"></a>1.1让命令出错了也不停止</h2><p>​     在命令前加“-”</p>
-<p>​    如： -rm  -f *.o</p>
-<h2 id="1-2自动寻找头文件"><a href="#1-2自动寻找头文件" class="headerlink" title="1.2自动寻找头文件"></a>1.2自动寻找头文件</h2><pre><code>方法1：编译器增加 -MM选项
-</code></pre><p>​    gcc -MM main.c</p>
-<p>​    方法2：生成.d文件</p>
-<p>​    %.d:  %.c</p>
-<p>​          @set -e; rm -f  $@;\</p>
-<p>​          $(gcc)  -M  $(CPPFLAGS)  $&lt;     &gt;  $@.$$$$;\</p>
-<p>​          sed ‘s,($<em>).o[:]</em>,\1.o $@:   ,g’   &lt;   $@.$$$$$       &gt;    $@;              \</p>
-<p>​           rm -f    $@.$$$$$</p>
-<h2 id="1-3引入其它的makefile"><a href="#1-3引入其它的makefile" class="headerlink" title="1.3引入其它的makefile"></a>1.3引入其它的makefile</h2><p>​    include</p>
-<p>​    例如：</p>
-<p>​    include $(source:.c=.d)</p>
-<h2 id="1-4传递变量"><a href="#1-4传递变量" class="headerlink" title="1.4传递变量"></a>1.4传递变量</h2><p>​    export</p>
-<p>​    例如：</p>
-<p>​    export var = value</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/03/18/MakeFile编码/" data-id="cjgglzwpx0011ssute2x7pdr9" class="article-share-link">Teilen</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2018/03/19/404/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Neuer</strong>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2018/03/18/Linux重定向/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Älter</strong>
-      <div class="article-nav-title">Linux重定向</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
+
 
 </section>
         

@@ -5,20 +5,20 @@
   
 
   
-  <title>MakeFile编码 | bushionxw Blog</title>
+  <title>CSharp设计模式 | bushionxw Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="例子： #main: test.cpp #gcc -o main test.cpp cc = gccprom = maindeps = func.hsource = test.cppobj = test.o func.o #deps = $(shell find ./ -name “*.h”) #src = $(shell find ./ -name “*.c”) $(prom): $(obj)">
-<meta name="keywords" content="Linux">
+  <meta name="description" content="1.单体设计模式1.1 无锁///     /// 单例模式的实现    ///     public class Singleton    {        // 定义一个静态变量来保存类的实例        private static Singleton uniqueInstance;     // 定义私有构造函数，使外界不能创建该类实例     private Singleton()">
+<meta name="keywords" content="C#">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MakeFile编码">
-<meta property="og:url" content="bushionxw.github.io/2018/03/18/MakeFile编码/index.html">
+<meta property="og:title" content="CSharp设计模式">
+<meta property="og:url" content="bushionxw.github.io/2018/04/26/CSharp设计模式/index.html">
 <meta property="og:site_name" content="bushionxw Blog">
-<meta property="og:description" content="例子： #main: test.cpp #gcc -o main test.cpp cc = gccprom = maindeps = func.hsource = test.cppobj = test.o func.o #deps = $(shell find ./ -name “*.h”) #src = $(shell find ./ -name “*.c”) $(prom): $(obj)">
+<meta property="og:description" content="1.单体设计模式1.1 无锁///     /// 单例模式的实现    ///     public class Singleton    {        // 定义一个静态变量来保存类的实例        private static Singleton uniqueInstance;     // 定义私有构造函数，使外界不能创建该类实例     private Singleton()">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-02T14:25:24.630Z">
+<meta property="og:updated_time" content="2018-04-26T14:11:09.912Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MakeFile编码">
-<meta name="twitter:description" content="例子： #main: test.cpp #gcc -o main test.cpp cc = gccprom = maindeps = func.hsource = test.cppobj = test.o func.o #deps = $(shell find ./ -name “*.h”) #src = $(shell find ./ -name “*.c”) $(prom): $(obj)">
+<meta name="twitter:title" content="CSharp设计模式">
+<meta name="twitter:description" content="1.单体设计模式1.1 无锁///     /// 单例模式的实现    ///     public class Singleton    {        // 定义一个静态变量来保存类的实例        private static Singleton uniqueInstance;     // 定义私有构造函数，使外界不能创建该类实例     private Singleton()">
   
     <link rel="alternate" href="/atom.xml" title="bushionxw Blog" type="application/atom+xml">
   
@@ -75,10 +75,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-MakeFile编码" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-CSharp设计模式" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/03/18/MakeFile编码/" class="article-date">
-  <time datetime="2018-03-18T12:53:37.000Z" itemprop="datePublished">2018-03-18</time>
+    <a href="/2018/04/26/CSharp设计模式/" class="article-date">
+  <time datetime="2018-04-26T14:02:05.000Z" itemprop="datePublished">2018-04-26</time>
 </a>
     
   <div class="article-category">
@@ -93,7 +93,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      MakeFile编码
+      CSharp设计模式
     </h1>
   
 
@@ -101,39 +101,67 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>例子：</p>
-<p>#main: test.cpp</p>
-<p>#gcc -o main test.cpp</p>
-<p>cc = gcc<br>prom = main<br>deps = func.h<br>source = test.cpp<br>obj = test.o func.o</p>
-<p>#deps = $(shell find ./ -name “*.h”)</p>
-<p>#src = $(shell find ./ -name “*.c”)</p>
-<p>$(prom): $(obj)<br>    $(cc) -o $(prom) $(obj)</p>
-<p>%.o: %.c $(deps)<br>    $(cc) -c $&lt; -o $@</p>
-<p>clean:<br>    rm -rf $(obj) $(prom)</p>
-<h1 id="1-命令"><a href="#1-命令" class="headerlink" title="1.命令"></a>1.命令</h1><h2 id="1-1让命令出错了也不停止"><a href="#1-1让命令出错了也不停止" class="headerlink" title="1.1让命令出错了也不停止"></a>1.1让命令出错了也不停止</h2><p>​     在命令前加“-”</p>
-<p>​    如： -rm  -f *.o</p>
-<h2 id="1-2自动寻找头文件"><a href="#1-2自动寻找头文件" class="headerlink" title="1.2自动寻找头文件"></a>1.2自动寻找头文件</h2><pre><code>方法1：编译器增加 -MM选项
-</code></pre><p>​    gcc -MM main.c</p>
-<p>​    方法2：生成.d文件</p>
-<p>​    %.d:  %.c</p>
-<p>​          @set -e; rm -f  $@;\</p>
-<p>​          $(gcc)  -M  $(CPPFLAGS)  $&lt;     &gt;  $@.$$$$;\</p>
-<p>​          sed ‘s,($<em>).o[:]</em>,\1.o $@:   ,g’   &lt;   $@.$$$$$       &gt;    $@;              \</p>
-<p>​           rm -f    $@.$$$$$</p>
-<h2 id="1-3引入其它的makefile"><a href="#1-3引入其它的makefile" class="headerlink" title="1.3引入其它的makefile"></a>1.3引入其它的makefile</h2><p>​    include</p>
-<p>​    例如：</p>
-<p>​    include $(source:.c=.d)</p>
-<h2 id="1-4传递变量"><a href="#1-4传递变量" class="headerlink" title="1.4传递变量"></a>1.4传递变量</h2><p>​    export</p>
-<p>​    例如：</p>
-<p>​    export var = value</p>
+        <h1 id="1-单体设计模式"><a href="#1-单体设计模式" class="headerlink" title="1.单体设计模式"></a>1.单体设计模式</h1><h2 id="1-1-无锁"><a href="#1-1-无锁" class="headerlink" title="1.1 无锁"></a>1.1 无锁</h2><p>/// <summary><br>    /// 单例模式的实现<br>    /// </summary><br>    public class Singleton<br>    {<br>        // 定义一个静态变量来保存类的实例<br>        private static Singleton uniqueInstance;</p>
+<pre><code>    // 定义私有构造函数，使外界不能创建该类实例
+    private Singleton()
+    {
+    }
 
+    /// &lt;summary&gt;
+    /// 定义公有方法提供一个全局访问点,同时你也可以定义公有属性来提供全局访问点
+    /// &lt;/summary&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static Singleton GetInstance()
+    {
+        // 如果类的实例不存在则创建，否则直接返回
+        if (uniqueInstance == null)
+        {
+            uniqueInstance = new Singleton();
+        }
+        return uniqueInstance;
+    }
+}
+</code></pre><h2 id="1-2-线程安全"><a href="#1-2-线程安全" class="headerlink" title="1.2 线程安全"></a>1.2 线程安全</h2><p>/// <summary><br>    /// 单例模式的实现<br>    /// </summary><br>    public class Singleton<br>    {<br>        // 定义一个静态变量来保存类的实例<br>        private static Singleton uniqueInstance;</p>
+<pre><code>    // 定义一个标识确保线程同步
+    private static readonly object locker = new object();
+
+    // 定义私有构造函数，使外界不能创建该类实例
+    private Singleton()
+    {
+    }
+
+    /// &lt;summary&gt;
+    /// 定义公有方法提供一个全局访问点,同时你也可以定义公有属性来提供全局访问点
+    /// &lt;/summary&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static Singleton GetInstance()
+    {
+        // 当第一个线程运行到这里时，此时会对locker对象 &quot;加锁&quot;，
+        // 当第二个线程运行该方法时，首先检测到locker对象为&quot;加锁&quot;状态，该线程就会挂起等待第一个线程解锁
+        // lock语句运行完之后（即线程运行完之后）会对该对象&quot;解锁&quot;
+        // 双重锁定只需要一句判断就可以了
+        if (uniqueInstance == null)
+        {
+            lock (locker)
+            {
+                // 如果类的实例不存在则创建，否则直接返回
+                if (uniqueInstance == null)
+                {
+                    uniqueInstance = new Singleton();
+                }
+            }
+        }
+        return uniqueInstance;
+    }
+}
+</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="bushionxw.github.io/2018/03/18/MakeFile编码/" data-id="cjgglzwpx0011ssute2x7pdr9" class="article-share-link">Teilen</a>
+      <a data-url="bushionxw.github.io/2018/04/26/CSharp设计模式/" data-id="cjgglzwnb0001ssut5mudv5sp" class="article-share-link">Teilen</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C#</a></li></ul>
 
     </footer>
   </div>
@@ -141,19 +169,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/03/19/404/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Neuer</strong>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/03/18/Linux重定向/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/04/19/windows操作linux/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Älter</strong>
-      <div class="article-nav-title">Linux重定向</div>
+      <div class="article-nav-title">windows操作linux</div>
     </a>
   
 </nav>
