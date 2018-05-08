@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="bushionxw Blog">
 <meta property="og:description" content="1.查看进程ps 1.1参数1）ps a 显示现行终端机下的所有程序，包括其他用户的程序。 2）ps -A 显示所有程序。 3）ps c 列出程序时，显示每个程序真正的指令名称，而不包含路径，参数或常驻服务的标示。 4）ps -e 此参数的效果和指定”A”参数相同。 5）ps e 列出程序时，显示每个程序所使用的环境变量。 6）ps f 用ASCII字符显示树状结构，表达程序间的相互关系。 7）p">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-18T13:03:59.133Z">
+<meta property="og:updated_time" content="2018-05-08T12:31:08.750Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux进程管理">
 <meta name="twitter:description" content="1.查看进程ps 1.1参数1）ps a 显示现行终端机下的所有程序，包括其他用户的程序。 2）ps -A 显示所有程序。 3）ps c 列出程序时，显示每个程序真正的指令名称，而不包含路径，参数或常驻服务的标示。 4）ps -e 此参数的效果和指定”A”参数相同。 5）ps e 列出程序时，显示每个程序所使用的环境变量。 6）ps f 用ASCII字符显示树状结构，表达程序间的相互关系。 7）p">
@@ -137,6 +137,8 @@
 <p>kill -KILL [pid]<br>发送SIGKILL (9)强迫进程立即停止，并且不实施清理操作。</p>
 <p>kill -9 -1<br>终止你拥有的全部进程。</p>
 <p>终止进程多个进程<br>killall http*</p>
+<p>关闭相关进程</p>
+<p>pkill -9 KSZ           //关闭KSZ匹配的全部进程</p>
 <h1 id="3-监控进程"><a href="#3-监控进程" class="headerlink" title="3.监控进程"></a>3.监控进程</h1><p>top</p>
 <p>可以下载htop，是top的增强版，显示信息和展示方式更丰富；</p>
 <p>可参考：<a href="https://www.cnblogs.com/yqsun/p/5396363.html" target="_blank" rel="noopener">https://www.cnblogs.com/yqsun/p/5396363.html</a></p>

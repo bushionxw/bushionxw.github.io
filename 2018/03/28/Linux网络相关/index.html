@@ -20,7 +20,13 @@
 <meta property="og:image" content="https://img-blog.csdn.net/20160314190846827">
 <meta property="og:image" content="https://img-blog.csdn.net/20160314191005233">
 <meta property="og:image" content="https://img-blog.csdn.net/20160314191239586">
-<meta property="og:updated_time" content="2018-03-28T12:55:01.906Z">
+<meta property="og:image" content="https://kfwimg.ikafan.com/upload/99/e5/99e554a2ecd4eb007e820e3a25f4d03b_thumb.jpg">
+<meta property="og:image" content="https://kfwimg.ikafan.com/upload/d6/46/d64672672665670753a0e7b0f32fed8b_thumb.jpg">
+<meta property="og:image" content="https://kfwimg.ikafan.com/upload/d8/6b/d86b4131ee86a663dd9e4081d7035748_thumb.jpg">
+<meta property="og:image" content="https://kfwimg.ikafan.com/upload/69/78/69784fdd62b417934dbed31836e2f815_thumb.jpg">
+<meta property="og:image" content="https://kfwimg.ikafan.com/upload/b5/54/b554822847b473d74fce068ec555f034_thumb.jpg">
+<meta property="og:image" content="https://kfwimg.ikafan.com/upload/06/be/06be49c4283989242861fec8a4e0b775_thumb.jpg">
+<meta property="og:updated_time" content="2018-05-08T12:45:24.752Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux网络相关">
 <meta name="twitter:description" content="1.外界访问相关配置在 /etc/sysconfig/network-scripts/文件夹下，有文件如：ifcfg-eth0 或者 ifcfg-ens33等，不同的系统版本文件名称不一样，文件中的ONBOOT=YES，意思是激活网卡； 2.相关文件(1)/etc/sysconfig/network 功能在于设置主机名称和是否可以启动整个网络 (2)/etc/sysconfig/network-s">
@@ -121,7 +127,7 @@
 <p>(6)<strong>/etc/protocols</strong></p>
 <p>定义IP数据包协议的相关数据，包括ICMP、TCP、UDP数据包协议的定义</p>
 <h1 id="3-常用命令"><a href="#3-常用命令" class="headerlink" title="3.常用命令"></a>3.常用命令</h1><p>对于下面介绍的命令，我不会写类似与man看到的内容，需要这样内容的请自行man一下，我只是写几个常用的命令和选项</p>
-<h3 id="ifconfig"><a href="#ifconfig" class="headerlink" title="ifconfig"></a>ifconfig</h3><p>手动启动、观察和修改网络借口(Network Interface)的相关参数</p>
+<h3 id="3-1-查看ip-ifconfig"><a href="#3-1-查看ip-ifconfig" class="headerlink" title="3.1 查看ip: ifconfig"></a>3.1 查看ip: ifconfig</h3><p>手动启动、观察和修改网络借口(Network Interface)的相关参数</p>
 <p>(1)<strong>直接输入ifconfig或者ifconfig eth0</strong></p>
 <p>显示目前已经被启动的网卡和其相关参数，包括IP、MAC地址等</p>
 <p><img src="https://img-blog.csdn.net/20160314104632548" alt="img"></p>
@@ -129,7 +135,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># ifconfig eth0 192.168.37.90   ##暂时将ip地址设置为192.168.37.90</span><br><span class="line"># ifconfig eth0 192.168.37.90 netmask 255.255.255.128 mtu 9000  ##设置NetworkMask和MTU</span><br><span class="line"># ifconfig eth0:0 192.168.50.90    ##在网卡上虚拟另外一个网络接口，就是在一块网卡上设置多个ip地址</span><br><span class="line"># ifconfig eth0:0 down   ##关闭此网络接口</span><br><span class="line"># /etc/init.d/network restart   ##重新启动整个网络，刚才的临时设置失效</span><br><span class="line">123456</span><br></pre></td></tr></table></figure>
 <h3 id="ifup-ifdown"><a href="#ifup-ifdown" class="headerlink" title="ifup/ifdown"></a>ifup/ifdown</h3><p>启动或者关闭网卡，以/etc/sysconfig/network-scripts/ifcfg-eth0这个配置文件里面的设置为准</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#ifup eth0   ##启动网卡</span><br><span class="line">#ifdown eth0   ##关闭网卡12</span><br></pre></td></tr></table></figure>
-<h3 id="route"><a href="#route" class="headerlink" title="route"></a>route</h3><p>(1)<strong>显示路由状态</strong></p>
+<h3 id="3-2查看路由：-route"><a href="#3-2查看路由：-route" class="headerlink" title="3.2查看路由： route"></a>3.2查看路由： route</h3><p>(1)<strong>显示路由状态</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#route -n 1</span><br></pre></td></tr></table></figure>
 <p><img src="https://img-blog.csdn.net/20160314115506303" alt="img"></p>
 <p>Destination和Mask合并起来就是个网段，上图的意思是:</p>
@@ -150,14 +156,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># ping -c 5 www.baidu.com</span><br><span class="line"># ping -c 5 -b 192.168.10.255   ##ping整个网段12</span><br></pre></td></tr></table></figure>
 <h3 id="tracerout"><a href="#tracerout" class="headerlink" title="tracerout"></a>tracerout</h3><p>对到目的地的所有Router进行ICMP的超时等待，可查看回经过那些路由和时间</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># tracerout -n www.baidu.com1</span><br></pre></td></tr></table></figure>
-<h3 id="netstat"><a href="#netstat" class="headerlink" title="netstat"></a>netstat</h3><p>查看网络接口所监听的端口</p>
+<h3 id="3-查看端口：-netstat"><a href="#3-查看端口：-netstat" class="headerlink" title="3.查看端口： netstat"></a>3.查看端口： netstat</h3><p>查看网络接口所监听的端口</p>
 <blockquote>
 <p><strong>参数：</strong></p>
 <p><strong>-n:  不适用主机名称与服务名称，知使用IP和Port NUmber</strong><br><strong>-a:  列出所有的联机状态</strong><br><strong>-t:  仅列出TCP数据包的联机</strong><br><strong>-u:  仅列出UDP数据包的联机</strong><br><strong>-l:  仅列出在Listen状态的服务</strong><br><strong>-p:  列出程序PID和程序名</strong><br><strong>-c:  自动更新</strong></p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># netstat -an   ##列出所有的联机状态1</span><br></pre></td></tr></table></figure>
 <p><img src="https://img-blog.csdn.net/20160314190846827" alt="img"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># netstat -tulnp   ##列出TCP和UDP在Listen的服务，同时显示PID和程序名1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"># netstat -tulnp   ##列出TCP和UDP在Listen的服务，同时显示PID和程序名1</span><br><span class="line"></span><br><span class="line">netstat -ntlp   //查看当前所有tcp端口·</span><br><span class="line"></span><br><span class="line">netstat -ntulp |grep 80   //查看所有80端口使用情况·</span><br><span class="line"></span><br><span class="line">netstat -an | grep 3306   //查看所有3306端口使用情况·</span><br><span class="line"></span><br><span class="line">查看一台服务器上面哪些服务及端口</span><br><span class="line"></span><br><span class="line">netstat  -lanp</span><br><span class="line"></span><br><span class="line">查看一个服务有几个端口。比如要查看mysqld</span><br><span class="line"></span><br><span class="line">ps -ef |grep mysqld</span><br><span class="line"></span><br><span class="line">查看某一端口的连接数量,比如3306端口</span><br><span class="line"></span><br><span class="line">netstat -pnt |grep :3306 |wc</span><br><span class="line"></span><br><span class="line">查看某一端口的连接客户端IP 比如3306端口</span><br><span class="line"></span><br><span class="line">netstat -anp |grep 3306</span><br><span class="line">netstat -an 查看网络端口 </span><br><span class="line"></span><br><span class="line">lsof -i :port，使用lsof -i :port就能看见所指定端口运行的程序，同时还有当前连接。 </span><br><span class="line"></span><br><span class="line">nmap 端口扫描</span><br><span class="line">netstat -nupl  (UDP类型的端口)</span><br><span class="line">netstat -ntpl  (TCP类型的端口)</span><br><span class="line">netstat -anp 显示系统端口使用情况</span><br></pre></td></tr></table></figure>
 <p><img src="https://img-blog.csdn.net/20160314191005233" alt="img"></p>
 <h3 id="host"><a href="#host" class="headerlink" title="host"></a>host</h3><p>查询主机对应的IP地址</p>
 <p><img src="https://img-blog.csdn.net/20160314191239586" alt="img"></p>
@@ -178,6 +184,34 @@
 <p>这个是上传。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost testscp]# scp -r root@192.168.70.77:/root/testscp /root</span><br><span class="line">root@192.168.70.77&apos;s password: </span><br><span class="line">hello                                                                         100%   10     0.0KB/s   00:00    </span><br><span class="line">world</span><br></pre></td></tr></table></figure>
 <p>这个是下载。</p>
+<h1 id="4-防火墙"><a href="#4-防火墙" class="headerlink" title="4.防火墙"></a>4.防火墙</h1><p>如果希望在服务器上提供服务，诸如CentOS或RHEL的企业级Linux发行版包含内置的强大防火墙，它们默认的防火墙规则十分严格。因此，如果你安装了任何定制的服务(比如web服务器、NFS和Samba)，那么它们的流量很有可能被防火墙规则阻塞。所以需要在防火墙上开启必要的端口以允许流量通过。</p>
+<p>在CentOS/RHEL 6或更早的版本上，iptables服务允许用户与netfilter内核模块交互来在用户空间中配置防火墙规则。然而，从CentOS/RHEL 7开始，一个叫做firewalld新用户空间接口被引入以取代iptables服务。</p>
+<p>使用这个命令察看当前的防火墙规则：</p>
+<p>代码如下:</p>
+<p>$ sudo iptables -L</p>
+<p><a href="https://kfwimg.ikafan.com/upload/99/e5/99e554a2ecd4eb007e820e3a25f4d03b.jpg" target="_blank" rel="noopener"><img src="https://kfwimg.ikafan.com/upload/99/e5/99e554a2ecd4eb007e820e3a25f4d03b_thumb.jpg" alt="img"></a><br>现在，让我们看看如何在CentOS/RHEL上修改防火墙来开启一个端口。</p>
+<p>在CentOS/RHEL 7上开启端口</p>
+<p>启动CentOS/RHEL 7后，防火墙规则设置由firewalld服务进程默认管理。一个叫做firewall-cmd的命令行客户端支持和这个守护进程通信以永久修改防火墙规则。</p>
+<p>使用这些命令来永久打开一个新端口(如TCP/80)。</p>
+<p>代码如下:</p>
+<p>$ sudo firewall-cmd –zone=public –add-port=80/tcp –permanent</p>
+<p>$ sudo firewall-cmd –reload</p>
+<p>如果不使用“–permanent”标记，把么防火墙规则在重启后会失效。</p>
+<p>在CentOS/RHEL 6上开启端口</p>
+<p>在CentOS/RHEL 6甚至更早版本系统上，iptables服务负责维护防火墙规则。</p>
+<p>使用iptables的第一条命令可以通过防火墙开启一个新TCP/UDP端口。为了永久保存修改过的规则，还需要第二条命令。</p>
+<p>代码如下:</p>
+<p>$ sudo iptables -I INPUT -p tcp -m tcp –dport 80 -j ACCEPT</p>
+<p>$ sudo service iptables save</p>
+<p>另一种方法是通过一个名为system-config-firewall-tui的命令行用户接口(TUI)的防火墙客户端。</p>
+<p>代码如下:</p>
+<p>$ sudo system-config-firewall-tui</p>
+<p>选择位于中间的“Customize”按钮，按下ENTER键即可。</p>
+<p><a href="https://kfwimg.ikafan.com/upload/d6/46/d64672672665670753a0e7b0f32fed8b.jpg" target="_blank" rel="noopener"><img src="https://kfwimg.ikafan.com/upload/d6/46/d64672672665670753a0e7b0f32fed8b_thumb.jpg" alt="img"></a><br>    如果想要为任何已知的服务(如web服务器)修改防火墙，只需勾选该服务，然后关闭工具。如果想要开启任意一个TCP/UDP端口，选择“Forward”按钮，然后进入下一个界面。</p>
+<p><a href="https://kfwimg.ikafan.com/upload/d8/6b/d86b4131ee86a663dd9e4081d7035748.jpg" target="_blank" rel="noopener"><img src="https://kfwimg.ikafan.com/upload/d8/6b/d86b4131ee86a663dd9e4081d7035748_thumb.jpg" alt="img"></a><br>    选择“Add”按钮添加一条新规则。</p>
+<p><a href="https://kfwimg.ikafan.com/upload/69/78/69784fdd62b417934dbed31836e2f815.jpg" target="_blank" rel="noopener"><img src="https://kfwimg.ikafan.com/upload/69/78/69784fdd62b417934dbed31836e2f815_thumb.jpg" alt="img"></a><br>    指定一个端口(如80)或者端口范围(如3000-3030)和协议(如tcp或udp)。</p>
+<p><a href="https://kfwimg.ikafan.com/upload/b5/54/b554822847b473d74fce068ec555f034.jpg" target="_blank" rel="noopener"><img src="https://kfwimg.ikafan.com/upload/b5/54/b554822847b473d74fce068ec555f034_thumb.jpg" alt="img"></a><br>    最后，保存修改过的配置，关闭工具。这样，防火墙就永久保存了。</p>
+<p><a href="https://kfwimg.ikafan.com/upload/06/be/06be49c4283989242861fec8a4e0b775.jpg" target="_blank" rel="noopener"><img src="https://kfwimg.ikafan.com/upload/06/be/06be49c4283989242861fec8a4e0b775_thumb.jpg" alt="img"></a></p>
 
       
     </div>
